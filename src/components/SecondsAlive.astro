@@ -1,0 +1,38 @@
+<span id="seconds-alive"></span>
+
+<script>
+    const birthDate = new Date("2004-11-04");
+    const birthDateSecs = Math.floor(birthDate.getTime() / 1000);
+    const currentTimeSecs = Math.floor(new Date().getTime() / 1000);
+
+    let secsElapsed = 0;
+
+    function updateSecondsAlive() {
+        let years = Math.floor(
+            (currentTimeSecs - birthDateSecs + secsElapsed) /
+                (60 * 60 * 24 * 365)
+        );
+        let days = Math.floor(
+            (currentTimeSecs - birthDateSecs + secsElapsed) / (60 * 60 * 24)
+        );
+        let hours = Math.floor(
+            (currentTimeSecs - birthDateSecs + secsElapsed) / (60 * 60)
+        );
+        let minutes = Math.floor(
+            (currentTimeSecs - birthDateSecs + secsElapsed) / 60
+        );
+        let seconds = currentTimeSecs - birthDateSecs + secsElapsed;
+
+        const element = document.getElementById("seconds-alive");
+        if (element) {
+            element.innerText = `AGE: ${years}y or ${days}d or ${hours}h or ${minutes}m or ${seconds}s (${birthDate.toDateString()})`;
+        }
+    }
+
+    updateSecondsAlive();
+
+    setInterval(() => {
+        secsElapsed++;
+        updateSecondsAlive();
+    }, 1000);
+</script>
