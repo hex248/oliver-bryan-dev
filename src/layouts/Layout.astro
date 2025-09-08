@@ -1,0 +1,20 @@
+---
+import "../styles/global.css";
+import Header from "../components/Header.astro";
+const { currentPage } = Astro.props;
+---
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <title>ob - {currentPage}</title>
+    </head>
+    <body>
+        <Header currentPage={currentPage} />
+        <div class="p-2">
+            <slot />
+        </div>
+    </body>
+</html>

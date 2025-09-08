@@ -1,0 +1,10 @@
+---
+import NavLink from "./NavLink.astro";
+
+const { currentPage } = Astro.props;
+---
+
+<header class="flex gap-2 p-2 border-b-1">
+    <NavLink currentPage={currentPage} title="home" href="/" />
+    <NavLink currentPage={currentPage} title="about" href="/about" />
+</header>

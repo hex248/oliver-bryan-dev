@@ -1,0 +1,9 @@
+---
+const { currentPage, title, href } = Astro.props;
+---
+
+<a
+    href={href}
+    class={`${currentPage === title ? "bg-black text-white" : ""} px-1 rounded-sm`}
+    >{title}</a
+>
