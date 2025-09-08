@@ -28,11 +28,61 @@
     --ayu-warning: #e6b450;
     --ayu-error: #f26d78;
     --ayu-info: #73b8ff;
+
+    /* ayu color palette */
+    --ayu-blue-50: #eff8ff;
+    --ayu-blue-100: #daeffe;
+    --ayu-blue-200: #bee4fd;
+    --ayu-blue-300: #91d3fc;
+    --ayu-blue-400: #5db8f8;
+    --ayu-blue-500: #59c2ff; /* link color */
+    --ayu-blue-600: #2483e2;
+    --ayu-blue-700: #1b6bcf;
+    --ayu-blue-800: #1c58a8;
+    --ayu-blue-900: #1d4d85;
+    --ayu-blue-950: #162f51;
+
+    --ayu-green-50: #f0fdf1;
+    --ayu-green-100: #dcfce0;
+    --ayu-green-200: #bbf7c3;
+    --ayu-green-300: #86efac;
+    --ayu-green-400: #4ade80;
+    --ayu-green-500: #7fd962; /* success color */
+    --ayu-green-600: #16a34a;
+    --ayu-green-700: #15803d;
+    --ayu-green-800: #166534;
+    --ayu-green-900: #14532d;
+    --ayu-green-950: #052e16;
+
+    --ayu-red-50: #fef2f2;
+    --ayu-red-100: #fee2e2;
+    --ayu-red-200: #fecaca;
+    --ayu-red-300: #fca5a5;
+    --ayu-red-400: #f87171;
+    --ayu-red-500: #f26d78; /* error color */
+    --ayu-red-600: #dc2626;
+    --ayu-red-700: #b91c1c;
+    --ayu-red-800: #991b1b;
+    --ayu-red-900: #7f1d1d;
+    --ayu-red-950: #450a0a;
+
+    --ayu-gray-50: #f9fafb;
+    --ayu-gray-100: #f3f4f6;
+    --ayu-gray-200: #e5e7eb;
+    --ayu-gray-300: #d1d5db;
+    --ayu-gray-400: #9ca3af;
+    --ayu-gray-500: #6c7380; /* gutter color */
+    --ayu-gray-600: #4b5563;
+    --ayu-gray-700: #374151;
+    --ayu-gray-800: #1f2937;
+    --ayu-gray-900: #161a24; /* highlight */
+    --ayu-gray-950: #10141c; /* background */
 }
 
 body {
     background-color: var(--ayu-bg);
     color: var(--ayu-fg);
+    font-family: "mono";
 }
 
 .bg-ayu-bg {
@@ -74,6 +124,32 @@ body {
 }
 .text-ayu-info {
     color: var(--ayu-info);
+}
+
+.text-ayu-red-500 {
+    color: var(--ayu-red-500);
+}
+.text-ayu-green-500 {
+    color: var(--ayu-green-500);
+}
+.text-ayu-blue-500 {
+    color: var(--ayu-blue-500);
+}
+.text-ayu-gray-500 {
+    color: var(--ayu-gray-500);
+}
+
+.bg-ayu-red-500 {
+    background-color: var(--ayu-red-500);
+}
+.bg-ayu-green-500 {
+    background-color: var(--ayu-green-500);
+}
+.bg-ayu-blue-500 {
+    background-color: var(--ayu-blue-500);
+}
+.bg-ayu-gray-500 {
+    background-color: var(--ayu-gray-500);
 }
 
 .border-ayu-accent {

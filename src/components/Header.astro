@@ -4,7 +4,13 @@ import NavLink from "./NavLink.astro";
 const { currentPage } = Astro.props;
 ---
 
-<header class="flex gap-2 p-2 border-b-1">
-    <NavLink currentPage={currentPage} title="home" href="/" />
-    <NavLink currentPage={currentPage} title="about" href="/about" />
+<header class="">
+    <div class="w-full flex gap-4 px-4 py-2 border-b-1 border-ayu-gutter">
+        <h1 class="text-2xl text-ayu-red-500">oliver bryan</h1>
+    </div>
+    <!-- nav: -->
+    <div class="w-full flex gap-4 px-4 py-2 border-b-1 border-ayu-gutter">
+        <NavLink currentPage={currentPage} title="home" href="/" />
+        <NavLink currentPage={currentPage} title="about" href="/about" />
+    </div>
 </header>
