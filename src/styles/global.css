@@ -1,1 +1,115 @@
 @import "tailwindcss";
+
+:root {
+    color-scheme: dark;
+
+    /* core ayu colors */
+    --ayu-bg: #10141c;
+    --ayu-fg: #bfbdb6;
+    --ayu-accent: #e6b450;
+    --ayu-highlight: #161a24;
+    --ayu-popup: #141821;
+    --ayu-link: #59c2ff;
+    --ayu-selection: #3388ff;
+    --ayu-inactive: #80b5ff;
+    --ayu-gutter: #6c7380;
+    --ayu-guide: #6c7380;
+    --ayu-shadow: #10141c;
+
+    /* diff colors */
+    --ayu-added: #7fd962;
+    --ayu-modified: #73b8ff;
+    --ayu-deleted: #f26d78;
+
+    /* semantic colors */
+    --ayu-primary: #e6b450;
+    --ayu-secondary: #59c2ff;
+    --ayu-success: #7fd962;
+    --ayu-warning: #e6b450;
+    --ayu-error: #f26d78;
+    --ayu-info: #73b8ff;
+}
+
+body {
+    background-color: var(--ayu-bg);
+    color: var(--ayu-fg);
+}
+
+.bg-ayu-bg {
+    background-color: var(--ayu-bg);
+}
+.bg-ayu-highlight {
+    background-color: var(--ayu-highlight);
+}
+.bg-ayu-popup {
+    background-color: var(--ayu-popup);
+}
+.bg-ayu-accent {
+    background-color: var(--ayu-accent);
+}
+.bg-ayu-selection {
+    background-color: var(--ayu-selection);
+}
+
+.text-ayu-fg {
+    color: var(--ayu-fg);
+}
+.text-ayu-accent {
+    color: var(--ayu-accent);
+}
+.text-ayu-link {
+    color: var(--ayu-link);
+}
+.text-ayu-gutter {
+    color: var(--ayu-gutter);
+}
+.text-ayu-success {
+    color: var(--ayu-success);
+}
+.text-ayu-warning {
+    color: var(--ayu-warning);
+}
+.text-ayu-error {
+    color: var(--ayu-error);
+}
+.text-ayu-info {
+    color: var(--ayu-info);
+}
+
+.border-ayu-accent {
+    border-color: var(--ayu-accent);
+}
+.border-ayu-gutter {
+    border-color: var(--ayu-gutter);
+}
+.border-ayu-selection {
+    border-color: var(--ayu-selection);
+}
+
+::selection {
+    background-color: rgba(
+        51,
+        136,
+        255,
+        0.25
+    ); /* --ayu-selection with opacity */
+    color: var(--ayu-fg);
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--ayu-bg);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--ayu-gutter);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--ayu-accent);
+}
