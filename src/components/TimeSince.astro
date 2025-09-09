@@ -1,0 +1,32 @@
+---
+const { date } = Astro.props;
+const uniqueId = `time-since-${Math.random().toString(36).substring(2, 9)}`;
+---
+
+<span id={uniqueId} data-date={date.getTime()}></span>
+
+<script define:vars={{ uniqueId, dateMS: date.getTime() }}>
+    const currentTimeMS = Math.floor(new Date().getTime());
+
+    let interval = 1; // ms
+    let msElapsed = 0;
+
+    function updateTimeAlive() {
+        let years = Math.floor(
+            (currentTimeMS - dateMS + msElapsed) / (60 * 60 * 24 * 365 * 1000)
+        );
+        let milliseconds = currentTimeMS - dateMS + msElapsed;
+
+        const element = document.getElementById(uniqueId);
+        if (element) {
+            element.innerText = `${years}y or ${milliseconds}ms`;
+        }
+    }
+
+    updateTimeAlive();
+
+    setInterval(() => {
+        msElapsed += interval;
+        updateTimeAlive();
+    }, interval);
+</script>
