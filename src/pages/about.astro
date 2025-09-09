@@ -1,9 +1,9 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import SecondsAlive from "../components/SecondsAlive.astro";
+import TimeAlive from "../components/TimeAlive.astro";
 ---
 
 <Layout currentPage="about">
     <h1 class="text-md">about page</h1>
-    <SecondsAlive client:react />
+    AGE: <TimeAlive client:react />
 </Layout>

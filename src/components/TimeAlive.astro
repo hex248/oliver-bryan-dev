@@ -1,0 +1,30 @@
+<span id="time-alive"></span>
+
+<script>
+    const birthDate = new Date("2004-11-04");
+    const birthDateMS = Math.floor(birthDate.getTime());
+    const currentTimeMS = Math.floor(new Date().getTime());
+
+    let interval = 1; // ms
+    let msElapsed = 0;
+
+    function updateTimeAlive() {
+        let years = Math.floor(
+            (currentTimeMS - birthDateMS + msElapsed) /
+                (60 * 60 * 24 * 365 * 1000)
+        );
+        let milliseconds = currentTimeMS - birthDateMS + msElapsed;
+
+        const element = document.getElementById("time-alive");
+        if (element) {
+            element.innerText = `${years}y or ${milliseconds}ms (${birthDate.toDateString()})`;
+        }
+    }
+
+    updateTimeAlive();
+
+    setInterval(() => {
+        msElapsed += interval;
+        updateTimeAlive();
+    }, interval);
+</script>
