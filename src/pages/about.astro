@@ -5,6 +5,11 @@ import TimeSince from "../components/TimeSince.astro";
 
 <Layout currentPage="about">
     <div class="text-md">
-        <p>AGE: <TimeSince date={new Date("2004-11-04")} client:react /></p>
+        <p>
+            AGE: <TimeSince
+                date={new Date("11:47:00 2004-11-04")}
+                client:react
+            />
+        </p>
     </div>
 </Layout>
