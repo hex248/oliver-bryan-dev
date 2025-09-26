@@ -21,7 +21,10 @@ const { title, description, date, image, slug } = Astro.props;
     }
 </style>
 
-<a href={`/projects/${slug}`} class="project-item block border">
+<a
+    href={`/projects/${slug}`}
+    class="project-item block border flex flex-col justify-between"
+>
     <div class="flex gap-4 p-4">
         <div class="w-16 h-16 flex-shrink-0">
             {
@@ -43,7 +46,9 @@ const { title, description, date, image, slug } = Astro.props;
             <p class="project-description text-sm">
                 {description}
             </p>
-            <p class="project-date text-xs">{date}</p>
         </div>
+    </div>
+    <div class="w-full flex justify-end p-2">
+        <p class="project-date text-xs">{date}</p>
     </div>
 </a>
