@@ -1,0 +1,29 @@
+---
+import ProjectPage from "../../components/ProjectPage.astro";
+
+export const metadata = {
+    title: "MIZU",
+    description:
+        "A discord bot card trading and collection game. (Currently inactive, 4000+ players) ",
+    date: "January - June 2024",
+    slug: "mizu",
+    image: "/mizu-icon.svg",
+    hidden: false,
+};
+---
+
+<ProjectPage metadata={metadata}>
+    <p>simple description here</p>
+
+    <p>images here</p>
+
+    <div class="bg-ayu-highlight p-4 rounded mt-4">
+        <h2 class="text-lg text-ayu-accent mb-2">Technologies</h2>
+        <ul class="list-disc list-inside space-y-1">
+            <li>Node.js</li>
+            <li>TypeScript</li>
+            <li>PostgreSQL</li>
+            <li>AWS S3</li>
+        </ul>
+    </div>
+</ProjectPage>
