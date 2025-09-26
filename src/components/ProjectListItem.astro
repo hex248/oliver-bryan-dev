@@ -5,7 +5,9 @@ const { title, description, date, image, slug } = Astro.props;
 <style>
     .project-item {
         border-color: var(--ayu-gutter-dim);
-        transition: all 0.2s;
+        transition:
+            color 0.2s,
+            border-color 0.2s;
     }
     .project-item:hover {
         border-color: var(--ayu-gutter);
@@ -19,13 +21,16 @@ const { title, description, date, image, slug } = Astro.props;
     .project-date {
         color: var(--ayu-gutter);
     }
+    .project-item:hover .project-date {
+        color: var(--ayu-accent);
+    }
 </style>
 
 <a
     href={`/projects/${slug}`}
-    class="project-item block border flex flex-col justify-between"
+    class="project-item block border-2 flex flex-col justify-between rounded-md"
 >
-    <div class="flex gap-4 p-4">
+    <div class="flex gap-4 p-4 pb-0">
         <div class="w-16 h-16 flex-shrink-0">
             {
                 image ? (
@@ -40,7 +45,7 @@ const { title, description, date, image, slug } = Astro.props;
             }
         </div>
         <div class="flex flex-col gap-2">
-            <h3 class="project-title text-lg -mb-2">
+            <h3 class="project-title text-lg -mb-2 -mt-1">
                 {title}
             </h3>
             <p class="project-description text-sm">
@@ -48,7 +53,7 @@ const { title, description, date, image, slug } = Astro.props;
             </p>
         </div>
     </div>
-    <div class="w-full flex justify-end p-2">
+    <div class="w-full flex justify-end p-2 pt-1">
         <p class="project-date text-xs">{date}</p>
     </div>
 </a>

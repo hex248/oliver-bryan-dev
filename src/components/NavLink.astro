@@ -2,8 +2,17 @@
 const { currentPage, title, href } = Astro.props;
 ---
 
+<style>
+    .nav-link {
+        transition: color 0.2s;
+    }
+    .nav-link:hover {
+        color: var(--ayu-accent);
+    }
+</style>
+
 <a
     href={href}
-    class={`${currentPage === title ? "text-ayu-accent font-bold" : ""}`}
+    class={`nav-link ${currentPage.toLowerCase() === title.toLowerCase() ? "text-ayu-accent font-bold" : ""}`}
     >{title}</a
 >
