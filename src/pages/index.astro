@@ -1,7 +1,84 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import ProjectListItem from "../components/ProjectListItem.astro";
+
+interface ProjectMetadata {
+    title: string;
+    description: string;
+    date: string;
+    slug: string;
+    hidden: boolean;
+    image?: string;
+}
+
+interface AstroModule {
+    metadata?: ProjectMetadata;
+}
+
+function parseDate(dateStr: string): Date {
+    // formats like "February 2024", "January - June 2024", "Q1 2023", etc
+    const lower = dateStr.toLowerCase();
+
+    if (lower.includes("q1")) return new Date("2023-01-01");
+    if (lower.includes("q2")) return new Date("2023-04-01");
+    if (lower.includes("q3")) return new Date("2023-07-01");
+    if (lower.includes("q4")) return new Date("2023-10-01");
+
+    const months: Record<string, number> = {
+        january: 0,
+        february: 1,
+        march: 2,
+        april: 3,
+        may: 4,
+        june: 5,
+        july: 6,
+        august: 7,
+        september: 8,
+        october: 9,
+        november: 10,
+        december: 11,
+    };
+
+    // month and year
+    for (const [monthName, monthIndex] of Object.entries(months)) {
+        if (lower.includes(monthName)) {
+            const yearMatch = dateStr.match(/\b(20\d{2})\b/);
+            if (yearMatch) {
+                return new Date(parseInt(yearMatch[1]), monthIndex, 1);
+            }
+        }
+    }
+
+    // fallback: try to extract any year
+    const yearMatch = dateStr.match(/\b(20\d{2})\b/);
+    if (yearMatch) {
+        return new Date(parseInt(yearMatch[1]), 0, 1);
+    }
+
+    return new Date(0);
+}
+
+const projects: ProjectMetadata[] = Object.values(
+    import.meta.glob<AstroModule>("./projects/*.astro", { eager: true })
+)
+    .map((module) => module.metadata)
+    .filter((metadata): metadata is ProjectMetadata => metadata !== undefined)
+    .filter((project) => !project.hidden)
+    .sort((a, b) => parseDate(b.date).getTime() - parseDate(a.date).getTime());
 ---
 
 <Layout currentPage="home">
-	<h1 class="text-md">home page</h1>
+    <h1 class="text-md mb-4">projects</h1>
+
+    {
+        projects.map((project) => (
+            <ProjectListItem
+                title={project.title}
+                description={project.description}
+                date={project.date}
+                image={project.image}
+                slug={project.slug}
+            />
+        ))
+    }
 </Layout>

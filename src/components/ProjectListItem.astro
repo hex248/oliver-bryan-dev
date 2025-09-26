@@ -1,0 +1,39 @@
+---
+const { title, description, date, image, slug } = Astro.props;
+---
+
+<style>
+    .project-item {
+        border-color: var(--ayu-gutter-dim);
+        transition: all 0.2s;
+    }
+    .project-item:hover {
+        border-color: var(--ayu-gutter);
+    }
+    .project-title {
+        color: var(--ayu-accent);
+        transition: color 0.2s;
+    }
+    .project-item:hover .project-title {
+        color: var(--ayu-red-500);
+    }
+</style>
+
+<a href={`/projects/${slug}`} class="project-item block border p-4 mb-4">
+    <div class="flex gap-4">
+        <div class="w-16 h-16 flex-shrink-0">
+            {image ? (
+                <img src={image} alt={`${title} icon`} class="w-full h-full object-cover rounded" />
+            ) : (
+                <div class="w-full h-full border border-ayu-gutter rounded"></div>
+            )}
+        </div>
+        <div class="flex-1">
+            <h3 class="project-title text-lg mb-2">
+                {title}
+            </h3>
+            <p class="text-sm text-ayu-fg mb-2">{description}</p>
+            <p class="text-xs text-ayu-gutter">{date}</p>
+        </div>
+    </div>
+</a>

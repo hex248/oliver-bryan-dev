@@ -1,0 +1,40 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+export interface Props {
+    metadata: {
+        title: string;
+        description: string;
+        date: string;
+        slug: string;
+        image?: string | null;
+        hidden: boolean;
+    };
+}
+
+const { metadata } = Astro.props;
+---
+
+<Layout currentPage="projects">
+    <div class="text-md">
+        <h1 class="text-xl text-ayu-accent mb-2">
+            {metadata.title}
+        </h1>
+
+        {
+            metadata.image ? (
+                <img
+                    src={metadata.image}
+                    alt={`${metadata.title} project icon`}
+                    class="w-32 h-32 mb-4 rounded"
+                />
+            ) : (
+                <div class="w-32 h-32 mb-4 border border-ayu-gutter rounded" />
+            )
+        }
+
+        <slot />
+
+        <p class="text-sm text-ayu-gutter mt-4">{metadata.date}</p>
+    </div>
+</Layout>
