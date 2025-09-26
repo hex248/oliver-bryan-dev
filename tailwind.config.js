@@ -13,6 +13,7 @@ export default {
                     // foreground colors
                     fg: "#bfbdb6",
                     gutter: "#6c7380",
+                    "gutter-dim": "#364253",
                     guide: "#6c7380",
 
                     // accent colors

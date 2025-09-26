@@ -15,6 +15,7 @@
     --ayu-selection: #3388ff;
     --ayu-inactive: #80b5ff;
     --ayu-gutter: #6c7380;
+    --ayu-gutter-dim: #364253;
     --ayu-guide: #6c7380;
     --ayu-shadow: #10141c;
 
@@ -161,6 +162,9 @@ body {
 }
 .border-ayu-gutter {
     border-color: var(--ayu-gutter);
+}
+.border-ayu-gutter-dim {
+    border-color: var(--ayu-gutter-dim);
 }
 .border-ayu-selection {
     border-color: var(--ayu-selection);
