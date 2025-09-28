@@ -54,6 +54,7 @@ const { metadata } = Astro.props;
                 <div class="w-24 h-24 mb-4 border border-ayu-gutter rounded" />
             )
         }
+        <p class="text-sm text-ayu-gutter mb-2">{metadata.date}</p>
 
         {
             metadata.url ? (
@@ -70,6 +71,8 @@ const { metadata } = Astro.props;
 
         <slot />
 
-        <p class="text-sm text-ayu-gutter mt-4">{metadata.date}</p>
+        <p class="text-center text-md text-ayu-gutter mt-8 mb-4">
+            projects/{metadata.slug} - {metadata.date}
+        </p>
     </div>
 </Layout>
