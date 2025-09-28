@@ -8,6 +8,7 @@ export interface Props {
         date: string;
         slug: string;
         image?: string | null;
+        url?: string;
         hidden: boolean;
     };
 }
@@ -15,9 +16,25 @@ export interface Props {
 const { metadata } = Astro.props;
 ---
 
+<style>
+    a {
+        text-decoration: none;
+        border-bottom: 1px solid var(--ayu-blue-500);
+        color: var(--ayu-blue-500);
+        transition:
+            color 0.1s,
+            border-color 0.1s;
+        margin-bottom: 16px;
+    }
+    a:hover {
+        color: var(--ayu-blue-600);
+        border-color: var(--ayu-blue-600);
+    }
+</style>
+
 <Layout currentPage="projects">
     <div class="text-md">
-        <h1 class="text-xl text-ayu-accent mb-2">
+        <h1 class="text-2xl text-ayu-accent mb-2">
             {metadata.title}
         </h1>
 
@@ -31,6 +48,19 @@ const { metadata } = Astro.props;
             ) : (
                 <div class="w-32 h-32 mb-4 border border-ayu-gutter rounded" />
             )
+        }
+
+        {
+            metadata.url ? (
+                <a
+                    href={metadata.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-block text-sm"
+                >
+                    Try {metadata.title}
+                </a>
+            ) : null
         }
 
         <slot />
