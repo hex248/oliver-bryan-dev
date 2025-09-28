@@ -12,8 +12,9 @@ const uniqueId = `time-since-${Math.random().toString(36).substring(2, 9)}`;
     let msElapsed = 0;
 
     function updateTimeAlive() {
-        let years = Math.floor(
-            (currentTimeMS - dateMS + msElapsed) / (60 * 60 * 24 * 365 * 1000)
+        let years = roundToDp(
+            (currentTimeMS - dateMS + msElapsed) / (60 * 60 * 24 * 365 * 1000),
+            2
         );
         let milliseconds = currentTimeMS - dateMS + msElapsed;
 
@@ -21,6 +22,11 @@ const uniqueId = `time-since-${Math.random().toString(36).substring(2, 9)}`;
         if (element) {
             element.innerText = `${years}y or ${milliseconds}ms`;
         }
+    }
+
+    function roundToDp(num, dp) {
+        const factor = Math.pow(10, dp);
+        return Math.round(num * factor) / factor;
     }
 
     updateTimeAlive();
