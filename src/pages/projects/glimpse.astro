@@ -1,0 +1,85 @@
+---
+import ProjectPage from "../../components/ProjectPage.astro";
+
+export const metadata = {
+    title: "glimpse",
+    description:
+        "A friendly, photo-first social app with real-time sharing, comments, and push notifications—built with Next.js, Prisma, and PostgreSQL.",
+    date: "May 2025",
+    slug: "glimpse",
+    image: "/glimpse-icon.svg",
+    url: "https://glimpse.ob248.com",
+    hidden: false,
+};
+---
+
+<ProjectPage metadata={metadata}>
+    <p class="mb-4">
+        "glimpse" is a full-stack social app for sharing photos with friends and
+        building real community. Early Instagram and tumblr were huge
+        inspirations, no influencers and brands, just keeping up with your
+        friends and family. Sign in with Google, and immediately access a
+        dynamic feed, comment on posts. Choose your "Profile Colour", and enable
+        push notifications for new posts, comments, and friend requests.
+    </p>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="bg-ayu-highlight p-4 rounded">
+            <h2 class="text-lg text-ayu-green-500 mb-2">Key features</h2>
+            <ul class="list-disc list-inside space-y-1">
+                <li>Photo uploads with caption & cropping function</li>
+                <li>User profiles with customizable colour themes</li>
+                <li>Dynamic, server-rendered feed of friends' photos</li>
+                <li>Commenting on posts</li>
+                <li>User search</li>
+                <li>Push notifications</li>
+            </ul>
+        </div>
+
+        <div class="bg-ayu-highlight p-4 rounded">
+            <h2 class="text-lg text-ayu-green-500 mb-2">Technologies</h2>
+            <ul class="list-disc list-inside space-y-1">
+                <li>Next.js + TypeScript</li>
+                <li>Prisma ORM + PostgreSQL</li>
+                <li>Tailwind CSS</li>
+                <li>Google OAuth with NextAuth.js</li>
+                <li>Web Push API</li>
+                <li>Next.js Server-side rendering & API routes</li>
+                <li>Progressive Web App (PWA)</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="mt-4">
+        <h2 class="text-2xl text-ayu-accent mb-3">Screenshots</h2>
+        <div
+            class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"
+        >
+            <img
+                src="/images/glimpse/feed.png"
+                alt="Feed view"
+                class="w-full h-full object-cover rounded"
+            />
+            <img
+                src="/images/glimpse/crop.png"
+                alt="Composer + cropping"
+                class="w-full h-full object-cover rounded"
+            /><img
+                src="/images/glimpse/profile.png"
+                alt="Profile (custom colours)"
+                class="w-full h-full object-cover rounded"
+            /><img
+                src="/images/glimpse/settings.png"
+                alt="Settings"
+                class="w-full h-full object-cover rounded"
+            /><img
+                src="/images/glimpse/comments.png"
+                alt="Comments & interactions"
+                class="w-full h-full object-cover rounded"
+            /><img
+                src="/images/glimpse/search.png"
+                alt="User search/discovery"
+                class="w-full h-full object-cover rounded"
+            />
+        </div>
+    </div>
+</ProjectPage>
