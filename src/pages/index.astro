@@ -67,7 +67,7 @@ const projects: ProjectMetadata[] = Object.values(
     .sort((a, b) => parseDate(b.date).getTime() - parseDate(a.date).getTime());
 ---
 
-<Layout currentPage="home">
+<Layout currentPage={{ title: "home", path: "/" }}>
     <!-- <h1 class="text-2xl font-medium mb-4">projects:</h1> -->
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">

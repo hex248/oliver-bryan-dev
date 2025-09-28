@@ -13,6 +13,6 @@ const { currentPage, title, href } = Astro.props;
 
 <a
     href={href}
-    class={`nav-link ${currentPage.toLowerCase() === title.toLowerCase() ? "text-ayu-accent font-bold" : ""}`}
+    class={`nav-link ${currentPage.path === href ? "text-ayu-accent font-bold" : ""}`}
     >{title}</a
 >

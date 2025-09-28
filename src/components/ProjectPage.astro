@@ -32,7 +32,12 @@ const { metadata } = Astro.props;
     }
 </style>
 
-<Layout currentPage="projects">
+<Layout
+    currentPage={{
+        title: `${metadata.title}`,
+        path: `projects/${metadata.slug}`,
+    }}
+>
     <div class="text-md">
         <h1 class="text-2xl text-ayu-accent mb-2">
             {metadata.title}

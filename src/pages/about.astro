@@ -3,7 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import TimeSince from "../components/TimeSince.astro";
 ---
 
-<Layout currentPage="about">
+<Layout currentPage={{ title: "about", path: "/about" }}>
     <div class="text-md">
         <p>
             AGE: <TimeSince
