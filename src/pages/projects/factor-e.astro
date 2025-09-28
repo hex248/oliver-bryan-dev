@@ -1,0 +1,28 @@
+---
+import ProjectPage from "../../components/ProjectPage.astro";
+
+export const metadata = {
+    title: "factor-e",
+    description: '(Pronounced "factory") A basic factory game (in development)',
+    date: "August 2025",
+    slug: "factor-e",
+    // image: "/factor-e-icon.svg",
+    github: "https://github.com/hex248/factor-e",
+    hidden: false,
+};
+---
+
+<ProjectPage metadata={metadata}>
+    <p>simple description here</p>
+
+    <p>images here</p>
+
+    <div class="bg-ayu-highlight p-4 rounded mt-4">
+        <h2 class="text-lg text-ayu-accent mb-2">Technologies</h2>
+        <ul class="list-disc list-inside space-y-1">
+            <li>C++</li>
+            <li>raylib (OpenGL)</li>
+            <li>CMake</li>
+        </ul>
+    </div>
+</ProjectPage>
