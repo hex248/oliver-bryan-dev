@@ -9,6 +9,7 @@ export interface Props {
         slug: string;
         image?: string | null;
         url?: string;
+        github?: string;
         hidden: boolean;
     };
 }
@@ -29,6 +30,15 @@ const { metadata } = Astro.props;
     a:hover {
         color: var(--ayu-blue-600);
         border-color: var(--ayu-blue-600);
+    }
+
+    .github {
+        color: var(--ayu-green-500);
+        border: none;
+    }
+    .github:hover {
+        color: var(--ayu-green-500);
+        text-decoration: underline;
     }
 </style>
 
@@ -54,7 +64,26 @@ const { metadata } = Astro.props;
                 <div class="w-24 h-24 mb-4 border border-ayu-gutter rounded" />
             )
         }
-        <p class="text-sm text-ayu-gutter mb-2">{metadata.date}</p>
+
+        <p class="text-sm text-ayu-gutter mb-2">
+            {metadata.date}
+            {
+                metadata.github && (
+                    <>
+                        {" "}
+                        -{" "}
+                        <a
+                            href={metadata.github}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="github"
+                        >
+                            GitHub
+                        </a>
+                    </>
+                )
+            }
+        </p>
 
         {
             metadata.url ? (
@@ -73,6 +102,22 @@ const { metadata } = Astro.props;
 
         <p class="text-center text-md text-ayu-gutter mt-8 mb-4">
             projects/{metadata.slug} - {metadata.date}
+            {
+                metadata.github && (
+                    <>
+                        {" "}
+                        -{" "}
+                        <a
+                            href={metadata.github}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="github"
+                        >
+                            GitHub
+                        </a>
+                    </>
+                )
+            }
         </p>
     </div>
 </Layout>
