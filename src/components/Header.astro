@@ -1,7 +1,4 @@
 ---
-import NavLink from "./NavLink.astro";
-import { Icon } from "astro-icon/components";
-
 const { currentPage } = Astro.props;
 
 const pages = [
@@ -24,67 +21,38 @@ const pages = [
     .cancel-button:hover .text {
         color: var(--ayu-red-500);
     }
-
-    .github-icon-link {
-        color: var(--ayu-accent);
-        transition: color 0.2s ease;
-    }
-
-    .github-icon-link:hover {
-        color: var(--ayu-red-500);
-    }
 </style>
 
 <header>
     <div
         class="w-full flex items-center justify-between px-4 py-2 border-b-1 border-ayu-gutter"
     >
-        <div class="flex items-center gap-3">
-            <img src="/favicon.svg" alt="oliver bryan icon" class="h-6 w-6" />
-            <h1 class="text-2xl text-ayu-red-500">oliver bryan</h1>
-        </div>
-    </div>
-    <div
-        class="w-full flex justify-between items-center p-2 border-b-1 border-ayu-gutter"
-    >
-    <div class="flex gap-4 px-2">
-        {
-            pages.map((page) => (
-                <NavLink
-                    currentPage={currentPage}
-                    title={page.title}
-                    href={page.path}
+        <div class="flex items-center">
+            <a href="/" class="flex items-center gap-2">
+                <img
+                    src="/favicon.svg"
+                    alt="oliver bryan icon"
+                    class="h-6 w-6"
                 />
-            ))
-        }
-
-        {
-            !pages.find((page) => page.path === currentPage.path) && (
-                <span class="flex items-center justify-start gap-4 text-ayu-gutter">
-                    {"|"}
-                    <button
-                        class="cancel-button flex items-center justify-center gap-2"
-                        type="button"
-                        onclick="window.location.href='/'"
-                    >
-                        <span class="text-sm text">{currentPage.path} </span>
-                        <span class="text-xl leading-none text-ayu-red-500">
-                            &times;
-                        </span>
-                    </button>
-                </span>
-            )
-        }
+                <h1 class="text-2xl text-ayu-red-500">oliver bryan</h1></a
+            >
+            {
+                !pages.find((page) => page.path === currentPage.path) && (
+                    <span class="flex items-center justify-start ml-4 text-ayu-gutter text-md">
+                        {"|"}
+                        <button
+                            class="cancel-button flex items-center justify-center gap-2 ml-4"
+                            type="button"
+                            onclick="window.location.href='/'"
+                        >
+                            <span class="text">{currentPage.path} </span>
+                            <span class="text-2xl leading-none text-ayu-red-500">
+                                &times;
+                            </span>
+                        </button>
+                    </span>
+                )
+            }
         </div>
-        <a
-            href="https://github.com/hex248"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="github-icon-link flex items-center gap-2"
-            title="GitHub Profile"
-        >
-            <Icon name="mdi:github" class="w-6 h-6" />
-        hex248
-        </a>
     </div>
 </header>
