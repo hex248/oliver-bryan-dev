@@ -1,5 +1,6 @@
 ---
 import ProjectPage from "../../components/ProjectPage.astro";
+import Demo from "../../components/Demo.astro";
 
 export const metadata = {
     title: "Wiskatron",
@@ -7,12 +8,50 @@ export const metadata = {
     date: "February 2024",
     slug: "wiskatron",
     image: "/wiskatron-icon.svg",
-    url: "https://wiskatron.oliverbryan.com",
+    // url: "https://wiskatron.oliverbryan.com",
     github: "https://github.com/hex248/wiskatron",
     hidden: true,
 };
 ---
 
 <ProjectPage metadata={metadata}>
-    <p class="mb-4">lorem ipsum</p>
+    <p class="mb-4">
+        Spotify listening activity web app with dynamic visuals, built with
+        Next.js.
+    </p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="bg-ayu-highlight p-4 rounded">
+            <h2 class="text-lg text-ayu-green-500 mb-2">Key features</h2>
+            <ul class="list-disc list-inside space-y-1">
+                <li>Live fetch from Spotify API</li>
+                <li>OAuth 2.0 authentication</li>
+                <li>Dynamic colour palette extraction</li>
+                <li>Smooth song transitions</li>
+            </ul>
+        </div>
+
+        <div class="bg-ayu-highlight p-4 rounded">
+            <h2 class="text-lg text-ayu-green-500 mb-2">Technologies</h2>
+            <ul class="list-disc list-inside space-y-1">
+                <li>Next.js + TypeScript</li>
+                <li>Spotify API</li>
+                <li>OAuth 2.0 with fastify</li>
+                <li>Next.js Server-side rendering & API routes</li>
+                <li>Colour palette extraction with node-vibrant</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="mt-4">
+        <h2 class="text-2xl text-ayu-accent mb-3">Screenshots</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <Demo image="/images/wiskatron/1.png" title="Example 1" />
+            <Demo image="/images/wiskatron/2.png" title="Example 2" />
+            <Demo image="/images/wiskatron/3.png" title="Example 3" />
+            <Demo image="/images/wiskatron/4.png" title="Example 4" />
+            <Demo image="/images/wiskatron/5.png" title="Example 5" />
+            <Demo image="/images/wiskatron/6.png" title="Example 6" />
+        </div>
+    </div>
 </ProjectPage>
