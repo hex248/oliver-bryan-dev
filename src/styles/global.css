@@ -197,3 +197,8 @@ body {
 ::-webkit-scrollbar-thumb:hover {
     background: var(--ayu-accent);
 }
+
+.demo-border {
+    border: 2px dotted var(--ayu-gutter);
+    border-radius: 15px;
+}
