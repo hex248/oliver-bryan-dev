@@ -1,5 +1,13 @@
 ---
-const { title, description, date, image, slug } = Astro.props;
+const {
+    title,
+    description,
+    date,
+    image,
+    slug,
+    isDevMode = false,
+    isHidden = false,
+} = Astro.props;
 ---
 
 <style>
@@ -24,11 +32,18 @@ const { title, description, date, image, slug } = Astro.props;
     .project-item:hover .project-date {
         color: var(--ayu-accent);
     }
+    .project-item.dev-hidden {
+        transition: border 0.2s;
+        border: 1px dashed var(--ayu-accent);
+    }
+    .project-item.dev-hidden:hover {
+        border: 1px solid var(--ayu-accent);
+    }
 </style>
 
 <a
     href={`/projects/${slug}`}
-    class="project-item block border-2 flex flex-col justify-between rounded-md"
+    class={`project-item block border-2 flex flex-col justify-between rounded-md ${isDevMode && isHidden ? "dev-hidden" : ""}`}
 >
     <div class="flex gap-4 p-4 pb-0">
         <div class="w-16 h-16 flex-shrink-0">

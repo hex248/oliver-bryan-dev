@@ -58,12 +58,14 @@ function parseDate(dateStr: string): Date {
     return new Date(0);
 }
 
+const isDevMode = import.meta.env.PUBLIC_DEV === "1";
+
 const projects: ProjectMetadata[] = Object.values(
     import.meta.glob<AstroModule>("./projects/*.astro", { eager: true })
 )
     .map((module) => module.metadata)
     .filter((metadata): metadata is ProjectMetadata => metadata !== undefined)
-    .filter((project) => !project.hidden)
+    .filter((project) => !project.hidden || isDevMode)
     .sort((a, b) => parseDate(b.date).getTime() - parseDate(a.date).getTime());
 ---
 
@@ -79,6 +81,8 @@ const projects: ProjectMetadata[] = Object.values(
                     date={project.date}
                     image={project.image}
                     slug={project.slug}
+                    isDevMode={isDevMode}
+                    isHidden={project.hidden}
                 />
             ))
         }
