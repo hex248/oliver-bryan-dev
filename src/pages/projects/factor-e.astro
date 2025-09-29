@@ -3,26 +3,101 @@ import ProjectPage from "../../components/ProjectPage.astro";
 
 export const metadata = {
     title: "factor-e",
-    description: '(Pronounced "factory") A basic factory game (in development)',
+    description:
+        "Isometric factory sandbox prototype built in C++ with raylib — Perlin world gen, place/destroy tiles, inventory & tools, and a dev/debug menu (Win/Linux).",
     date: "August 2025",
     slug: "factor-e",
-    // image: "/factor-e-icon.svg",
+    image: "/factor-e-icon.svg",
     github: "https://github.com/hex248/factor-e",
     hidden: false,
 };
 ---
 
+<style>
+    .green {
+        color: var(--ayu-green-500);
+    }
+
+    a {
+        text-decoration: none;
+        border-bottom: 1px solid var(--ayu-blue-500);
+        color: var(--ayu-blue-500);
+        transition:
+            color 0.1s,
+            border-color 0.1s;
+        margin-bottom: 16px;
+    }
+    a:hover {
+        color: var(--ayu-blue-600);
+        border-color: var(--ayu-blue-600);
+    }
+</style>
+
 <ProjectPage metadata={metadata}>
-    <p>simple description here</p>
+    <p>
+        "factor-e" is an isometric factory sandbox prototype I built to learn
+        C++ and <a
+            href="https://www.raylib.com/"
+            target="_blank"
+            rel="noopener noreferrer">raylib</a
+        >. Inspired by Minecraft and <a
+            href="https://store.steampowered.com/app/3433610/Terrafactor/"
+            target="_blank"
+            rel="noopener noreferrer">Terrafactor</a
+        >, it explores tile-based building, inventory management and procedural
+        world generation.
+    </p>
 
-    <p>images here</p>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="bg-ayu-highlight p-4 rounded mt-4">
+            <h2 class="text-lg text-ayu-green-500 mb-2">Key features</h2>
+            <ul class="list-disc list-inside space-y-1">
+                <li>Isometric rendering with my own pixel art</li>
+                <li>Procedural world generation using Perlin noise</li>
+                <li>Simple tile place/destroy loop</li>
+                <li>Basic inventory and tool system</li>
+                <li>Dev/debug overlay</li>
+                <li>Cross-platform builds (Windows + Linux)</li>
+                <li><span class="green">Status:</span> active prototype</li>
+            </ul>
+        </div>
 
-    <div class="bg-ayu-highlight p-4 rounded mt-4">
-        <h2 class="text-lg text-ayu-accent mb-2">Technologies</h2>
-        <ul class="list-disc list-inside space-y-1">
-            <li>C++</li>
-            <li>raylib (OpenGL)</li>
-            <li>CMake</li>
-        </ul>
+        <div class="bg-ayu-highlight p-4 rounded mt-4">
+            <h2 class="text-lg text-ayu-green-500 mb-2">Technologies</h2>
+            <ul class="list-disc list-inside space-y-1">
+                <li>C++</li>
+                <li>raylib (OpenGL)</li>
+                <li>CMake</li>
+                <li>Perlin noise generation</li>
+                <li>Aseprite</li>
+                <li>Engine-less game development</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="mt-4">
+        <h2 class="text-2xl text-ayu-accent mb-3">Screenshots</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <img
+                src="/images/factor-e/world-gen.gif"
+                alt="World gen (GIF)"
+                class="w-full h-full object-cover demo-border"
+            />
+            <img
+                src="/images/factor-e/pixel-art.png"
+                alt="Pixel art"
+                class="w-full h-full object-cover demo-border"
+            />
+            <img
+                src="/images/factor-e/place-destroy.gif"
+                alt="Place/destroy loop (GIF)"
+                class="w-full h-full object-cover demo-border"
+            />
+            <img
+                src="/images/factor-e/debug-overlay.gif"
+                alt="Dev/debug overlay"
+                class="w-full h-full object-cover demo-border"
+            />
+        </div>
     </div>
 </ProjectPage>
