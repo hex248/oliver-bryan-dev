@@ -236,4 +236,12 @@ body {
 .demo-border {
     border: 2px dotted var(--ayu-gutter);
     border-radius: 15px;
+    overflow: hidden;
+}
+
+.demo-border span {
+    display: block;
+    background-color: var(--ayu-popup);
+    padding: 5px;
+    text-align: center;
 }

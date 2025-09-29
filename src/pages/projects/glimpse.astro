@@ -1,5 +1,6 @@
 ---
 import ProjectPage from "../../components/ProjectPage.astro";
+import Demo from "../../components/Demo.astro";
 
 export const metadata = {
     title: "glimpse",
@@ -54,35 +55,35 @@ export const metadata = {
         <div
             class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"
         >
-            <img
-                src="/images/glimpse/feed.png"
-                alt="Feed view"
-                class="w-full h-full object-cover demo-border"
+            <Demo
+                image="/images/glimpse/feed.png"
+                title="Feed view"
+                type="boxed"
             />
-            <img
-                src="/images/glimpse/crop.png"
-                alt="Composer + cropping"
-                class="w-full h-full object-cover demo-border"
+            <Demo
+                image="/images/glimpse/crop.png"
+                title="Share - write a caption + crop"
+                type="boxed"
             />
-            <img
-                src="/images/glimpse/profile.png"
-                alt="Profile (custom colours)"
-                class="w-full h-full object-cover demo-border"
+            <Demo
+                image="/images/glimpse/comments.png"
+                title="Comments & interactions"
+                type="boxed"
             />
-            <img
-                src="/images/glimpse/settings.png"
-                alt="Settings"
-                class="w-full h-full object-cover demo-border"
+            <Demo
+                image="/images/glimpse/profile.png"
+                title="Profile (custom colours)"
+                type="boxed"
             />
-            <img
-                src="/images/glimpse/comments.png"
-                alt="Comments & interactions"
-                class="w-full h-full object-cover demo-border"
+            <Demo
+                image="/images/glimpse/settings.png"
+                title="Settings"
+                type="boxed"
             />
-            <img
-                src="/images/glimpse/search.png"
-                alt="User search/discovery"
-                class="w-full h-full object-cover demo-border"
+            <Demo
+                image="/images/glimpse/search.png"
+                title="User search/discovery"
+                type="boxed"
             />
         </div>
     </div>

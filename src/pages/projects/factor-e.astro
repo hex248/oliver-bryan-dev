@@ -1,5 +1,6 @@
----
+ ---
 import ProjectPage from "../../components/ProjectPage.astro";
+import Demo from "../../components/Demo.astro";
 
 export const metadata = {
     title: "factor-e",
@@ -75,29 +76,13 @@ export const metadata = {
         </div>
     </div>
 
-    <div class="mt-4">
-        <h2 class="text-2xl text-ayu-accent mb-3">Screenshots</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <img
-                src="/images/factor-e/world-gen.gif"
-                alt="World gen (GIF)"
-                class="w-full h-full object-cover demo-border"
-            />
-            <img
-                src="/images/factor-e/pixel-art.png"
-                alt="Pixel art"
-                class="w-full h-full object-cover demo-border"
-            />
-            <img
-                src="/images/factor-e/place-destroy.gif"
-                alt="Place/destroy loop (GIF)"
-                class="w-full h-full object-cover demo-border"
-            />
-            <img
-                src="/images/factor-e/debug-overlay.gif"
-                alt="Dev/debug overlay"
-                class="w-full h-full object-cover demo-border"
-            />
-        </div>
-    </div>
+     <div class="mt-4">
+         <h2 class="text-2xl text-ayu-accent mb-3">Demo</h2>
+         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+             <Demo image="/images/factor-e/world-gen.gif" title="World generation" type="boxed" />
+             <Demo image="/images/factor-e/pixel-art.png" title="Pixel art" type="boxed" />
+             <Demo image="/images/factor-e/place-destroy.gif" title="Place/destroy loop" type="boxed" />
+             <Demo image="/images/factor-e/debug-overlay.gif" title="Dev/debug overlay" type="boxed" />
+         </div>
+     </div>
 </ProjectPage>

@@ -1,5 +1,6 @@
----
+ ---
 import ProjectPage from "../../components/ProjectPage.astro";
+import Demo from "../../components/Demo.astro";
 
 export const metadata = {
     title: "Watercooler",
@@ -58,29 +59,13 @@ export const metadata = {
         </div>
     </div>
 
-    <div class="mt-4">
-        <h2 class="text-2xl text-ayu-accent mb-3">Screenshots</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <img
-                src="/images/watercooler/office.png"
-                alt="Office space"
-                class="w-full h-full object-cover demo-border"
-            />
-            <img
-                src="/images/watercooler/idk.png"
-                alt="idk"
-                class="w-full h-full object-cover demo-border"
-            />
-            <img
-                src="/images/watercooler/idk.png"
-                alt="idk"
-                class="w-full h-full object-cover demo-border"
-            />
-            <img
-                src="/images/watercooler/idk.png"
-                alt="idk"
-                class="w-full h-full object-cover demo-border"
-            />
-        </div>
-    </div>
+     <div class="mt-4">
+         <h2 class="text-2xl text-ayu-accent mb-3">Screenshots</h2>
+         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+             <Demo image="/images/watercooler/office.png" title="Office space" />
+             <Demo image="/images/watercooler/idk.png" title="idk" />
+             <Demo image="/images/watercooler/idk.png" title="idk" />
+             <Demo image="/images/watercooler/idk.png" title="idk" />
+         </div>
+     </div>
 </ProjectPage>
