@@ -1,6 +1,9 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import ProjectListItem from "../components/ProjectListItem.astro";
+import TimeSince from "../components/TimeSince.astro";
+
+import { Icon } from "astro-icon/components";
 
 interface ProjectMetadata {
     title: string;
@@ -69,8 +72,49 @@ const projects: ProjectMetadata[] = Object.values(
     .sort((a, b) => parseDate(b.date).getTime() - parseDate(a.date).getTime());
 ---
 
+<style>
+    .github-icon-link {
+        color: var(--ayu-accent);
+        transition: color 0.2s ease;
+    }
+
+    .github-icon-link:hover {
+        color: var(--ayu-red-500);
+    }
+</style>
+
 <Layout currentPage={{ title: "home", path: "/" }}>
-    <!-- <h1 class="text-2xl font-medium mb-4">projects:</h1> -->
+    <h2 class="text-2xl font-600">ABOUT</h2>
+    <div class="flex flex-col py-2 gap-2 mb-4">
+        <span class="flex flex-wrap gap-2">
+            <a
+                href="https://github.com/hex248"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="github-icon-link flex items-center gap-1"
+                title="GitHub Profile"
+            >
+                <Icon name="mdi:github" class="w-6 h-6" />
+                hex248
+            </a>
+            / <a
+                href="mailto:04oliverbryan@gmail.com"
+                class="github-icon-link flex items-center gap-1"
+                title="Email"
+            >
+                <Icon name="mdi:email-outline" class="w-6 h-6" />
+            04oliverbryan@gmail.com
+            </a>
+        </span>
+        <p>
+            AGE: <TimeSince
+                date={new Date("11:47:00 2004-11-04")}
+                client:react
+            />
+        </p>
+    </div>
+
+    <h2 class="text-2xl font-600 mb-4">PROJECTS</h2>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
         {
