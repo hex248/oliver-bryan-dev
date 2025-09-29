@@ -1,0 +1,86 @@
+---
+import ProjectPage from "../../components/ProjectPage.astro";
+
+export const metadata = {
+    title: "Watercooler",
+    description:
+        "Virtual office space for remote teams allowing quick questions and spontaneous chats.",
+    date: "March 2025",
+    slug: "watercooler",
+    image: "/watercooler-icon.svg",
+    // github: "https://github.com/hex248/watercooler",
+    hidden: true,
+};
+---
+
+<style>
+    .green {
+        color: var(--ayu-green-500);
+    }
+
+    a {
+        text-decoration: none;
+        border-bottom: 1px solid var(--ayu-blue-500);
+        color: var(--ayu-blue-500);
+        transition:
+            color 0.1s,
+            border-color 0.1s;
+        margin-bottom: 16px;
+    }
+    a:hover {
+        color: var(--ayu-blue-600);
+        border-color: var(--ayu-blue-600);
+    }
+</style>
+
+<ProjectPage metadata={metadata}>
+    <p>watercooler description here</p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="bg-ayu-highlight p-4 rounded mt-4">
+            <h2 class="text-lg text-ayu-green-500 mb-2">Key features</h2>
+            <ul class="list-disc list-inside space-y-1">
+                <li>feature1</li>
+                <li><span class="green">Status:</span> active prototype</li>
+            </ul>
+        </div>
+
+        <div class="bg-ayu-highlight p-4 rounded mt-4">
+            <h2 class="text-lg text-ayu-green-500 mb-2">Technologies</h2>
+            <ul class="list-disc list-inside space-y-1">
+                <li>LiveKit (WebRTC)</li>
+                <li>Next.js + TypeScript</li>
+                <li>Prisma ORM + PostgreSQL</li>
+                <li>Tailwind CSS</li>
+                <li>Google OAuth with NextAuth.js</li>
+                <li>Next.js Server-side rendering & API routes</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="mt-4">
+        <h2 class="text-2xl text-ayu-accent mb-3">Screenshots</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <img
+                src="/images/watercooler/office.png"
+                alt="Office space"
+                class="w-full h-full object-cover demo-border"
+            />
+            <img
+                src="/images/watercooler/idk.png"
+                alt="idk"
+                class="w-full h-full object-cover demo-border"
+            />
+            <img
+                src="/images/watercooler/idk.png"
+                alt="idk"
+                class="w-full h-full object-cover demo-border"
+            />
+            <img
+                src="/images/watercooler/idk.png"
+                alt="idk"
+                class="w-full h-full object-cover demo-border"
+            />
+        </div>
+    </div>
+</ProjectPage>
