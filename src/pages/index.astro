@@ -71,6 +71,13 @@ const projects: ProjectMetadata[] = Object.values(
     .filter((metadata): metadata is ProjectMetadata => metadata !== undefined)
     .filter((project) => !project.hidden || isDevMode)
     .sort((a, b) => parseDate(b.date).getTime() - parseDate(a.date).getTime());
+
+const allTags = new Set<string>();
+projects.forEach((project) => {
+    project.tags?.forEach((tag) => allTags.add(tag));
+});
+
+const sortedTags = Array.from(allTags).sort((a, b) => a.localeCompare(b));
 ---
 
 <style>
@@ -153,6 +160,19 @@ const projects: ProjectMetadata[] = Object.values(
 
     <h2 class="text-2xl font-600 text-ayu-green-500">PROJECTS</h2>
 
+    <div class="flex flex-wrap gap-2 py-2">
+        {
+            sortedTags.map((tag) => (
+                <span
+                    id={`tag-${tag}`}
+                    data-tag={tag}
+                    class="no-select cursor-pointer rounded-md border border-ayu-gutter text-ayu-fg px-2 py-0 text-sm font-500"
+                >
+                    {tag}
+                </span>
+            ))
+        }
+    </div>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 py-2">
         {
             projects.map((project) => (
@@ -169,4 +189,92 @@ const projects: ProjectMetadata[] = Object.values(
             ))
         }
     </div>
+    <script>
+        const selectedTagBg = "bg-ayu-accent";
+        const selectedTagText = "text-ayu-bg";
+        const unselectedTagBorder = "border-ayu-gutter";
+        const unselectedTagText = "text-ayu-fg";
+
+        const tags = document.querySelectorAll("[data-tag]");
+        const projects = document.getElementsByClassName("project-item");
+
+        const selectedTags = new Set<string>();
+
+        function updateTagStyles() {
+            tags.forEach((tag) => {
+                const tagName = tag.getAttribute("data-tag");
+                if (selectedTags.has(tagName || "")) {
+                    tag.classList.add(selectedTagBg, selectedTagText);
+                    tag.classList.remove(
+                        unselectedTagBorder,
+                        unselectedTagText
+                    );
+                } else {
+                    tag.classList.remove(selectedTagBg, selectedTagText);
+                    tag.classList.add(unselectedTagBorder, unselectedTagText);
+                }
+            });
+        }
+
+        function updateProjects() {
+            Array.from(projects).forEach((project) => {
+                const projectTags =
+                    project
+                        .getAttribute("data-tags")
+                        ?.split(",")
+                        .map((t) => t.trim()) || [];
+                const hasAllTags =
+                    selectedTags.size === 0 ||
+                    Array.from(selectedTags).every((tag) =>
+                        projectTags.includes(tag)
+                    );
+                if (hasAllTags) {
+                    (project as HTMLElement).style.display = "block";
+
+                    const tagElements =
+                        project.getElementsByClassName("project-tag");
+
+                    const matchingTags = Array.from(tagElements).filter(
+                        (tagElement) =>
+                            selectedTags.has(
+                                (tagElement as HTMLElement).innerText
+                            )
+                    );
+                    Array.from(tagElements).forEach((tag) => {
+                        tag.classList.remove(selectedTagBg, selectedTagText);
+                        tag.classList.add(
+                            unselectedTagBorder,
+                            unselectedTagText
+                        );
+                    });
+
+                    matchingTags.forEach((tag) => {
+                        tag.classList.add(selectedTagBg, selectedTagText);
+                        tag.classList.remove(
+                            unselectedTagBorder,
+                            unselectedTagText
+                        );
+                    });
+                } else {
+                    (project as HTMLElement).style.display = "none";
+                }
+            });
+        }
+
+        tags.forEach((tag) => {
+            tag.addEventListener("click", () => {
+                const tagName = tag.getAttribute("data-tag");
+                if (!tagName) return;
+
+                if (selectedTags.has(tagName)) {
+                    selectedTags.delete(tagName);
+                } else {
+                    selectedTags.add(tagName);
+                }
+
+                updateTagStyles();
+                updateProjects();
+            });
+        });
+    </script>
 </Layout>
