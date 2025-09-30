@@ -73,6 +73,20 @@ const projects: ProjectMetadata[] = Object.values(
 ---
 
 <style>
+    .inline-link {
+        text-decoration: none;
+        border-bottom: 1px solid var(--ayu-blue-500);
+        color: var(--ayu-blue-500);
+        transition:
+            color 0.1s,
+            border-color 0.1s;
+        margin-bottom: 16px;
+    }
+    .inline-link:hover {
+        color: var(--ayu-blue-600);
+        border-color: var(--ayu-blue-600);
+    }
+
     .github-icon-link {
         color: var(--ayu-accent);
         transition: color 0.2s ease;
@@ -118,12 +132,17 @@ const projects: ProjectMetadata[] = Object.values(
             1 year in industry as a Junior Software Developer
         </li>
         <li>
-            <span class="text-ayu-blue-500 font-500">Skills: </span>React,
-            TypeScript, Pixel-Art
+            <span class="text-ayu-blue-500 font-500">Skills: </span>Web
+            Development, Game Development, Python, JavaScript, TypeScript
         </li>
         <li>
             <span class="text-ayu-red-500 font-500">Hobbies: </span>Music,
-            Travel, Badminton
+            Travel, Badminton, <a
+                href="https://photos.oliverbryan.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-link">Photography</a
+            >
         </li>
         <li>
             <span class="text-ayu-blue-500 font-500">Age: </span>
