@@ -11,6 +11,7 @@ export interface Props {
         url?: string;
         github?: string;
         hidden: boolean;
+        tags?: string[];
     };
 }
 
@@ -84,6 +85,18 @@ const { metadata } = Astro.props;
                 )
             }
         </p>
+
+        {
+            metadata.tags && metadata.tags.length > 0 && (
+                <div class="flex gap-1.5 text-sm flex-wrap leading-3 items-center mb-2 no-select">
+                    {metadata.tags.map((tag: string, idx: number) => (
+                        <span class="flex items-center text-ayu-gutter font-500 rounded-md border border-ayu-gutter px-1.5 py-1">
+                            {tag}
+                        </span>
+                    ))}
+                </div>
+            )
+        }
 
         {
             metadata.url ? (

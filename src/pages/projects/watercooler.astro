@@ -1,4 +1,4 @@
- ---
+---
 import ProjectPage from "../../components/ProjectPage.astro";
 import Demo from "../../components/Demo.astro";
 
@@ -11,6 +11,15 @@ export const metadata = {
     image: "/watercooler-icon.svg",
     // github: "https://github.com/hex248/watercooler",
     hidden: true,
+    tags: [
+        "web",
+        "react",
+        "typescript",
+        "webrtc",
+        "livekit",
+        "postgresql",
+        "oauth",
+    ],
 };
 ---
 
@@ -59,13 +68,13 @@ export const metadata = {
         </div>
     </div>
 
-     <div class="mt-4">
-         <h2 class="text-2xl text-ayu-accent mb-3">Screenshots</h2>
-         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-             <Demo image="/images/watercooler/office.png" title="Office space" />
-             <Demo image="/images/watercooler/idk.png" title="idk" />
-             <Demo image="/images/watercooler/idk.png" title="idk" />
-             <Demo image="/images/watercooler/idk.png" title="idk" />
-         </div>
-     </div>
+    <div class="mt-4">
+        <h2 class="text-2xl text-ayu-accent mb-3">Screenshots</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <Demo image="/images/watercooler/office.png" title="Office space" />
+            <Demo image="/images/watercooler/idk.png" title="idk" />
+            <Demo image="/images/watercooler/idk.png" title="idk" />
+            <Demo image="/images/watercooler/idk.png" title="idk" />
+        </div>
+    </div>
 </ProjectPage>

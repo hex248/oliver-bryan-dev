@@ -12,6 +12,7 @@ interface ProjectMetadata {
     slug: string;
     hidden: boolean;
     image?: string;
+    tags?: string[];
 }
 
 interface AstroModule {
@@ -163,6 +164,7 @@ const projects: ProjectMetadata[] = Object.values(
                     slug={project.slug}
                     isDevMode={isDevMode}
                     isHidden={project.hidden}
+                    tags={project.tags || []}
                 />
             ))
         }
