@@ -106,8 +106,8 @@ const sortedTags = Array.from(allTags).sort((a, b) => a.localeCompare(b));
 </style>
 
 <Layout currentPage={{ title: "home", path: "/" }}>
-    <h2 class="text-2xl font-600 text-ayu-green-500">ABOUT</h2>
-    <span class="flex flex-wrap gap-2 py-2">
+    <h2 class="text-2xl font-600 text-ayu-green-500 mb-2">ABOUT</h2>
+    <span class="flex flex-wrap gap-2 mb-2">
         <a
             href="https://github.com/hex248"
             target="_blank"
@@ -127,7 +127,7 @@ const sortedTags = Array.from(allTags).sort((a, b) => a.localeCompare(b));
             04oliverbryan@gmail.com
         </a>
     </span>
-    <ul class="list-disc ml-4 mb-4">
+    <ul class="list-disc ml-4 mb-2">
         <li>
             <span class="text-ayu-red-500 font-500">Name: </span>Oliver Bryan
         </li>
@@ -158,20 +158,26 @@ const sortedTags = Array.from(allTags).sort((a, b) => a.localeCompare(b));
         </li>
     </ul>
 
-    <h2 class="text-2xl font-600 text-ayu-green-500">PROJECTS</h2>
+    <h2 class="text-2xl font-600 text-ayu-green-500 mt-6">PROJECTS</h2>
 
-    <div class="flex flex-wrap gap-2 py-2">
-        {
-            sortedTags.map((tag) => (
-                <span
-                    id={`tag-${tag}`}
-                    data-tag={tag}
-                    class="no-select cursor-pointer rounded-md border border-ayu-gutter text-ayu-fg px-2 py-0 text-sm font-500"
-                >
-                    {tag}
-                </span>
-            ))
-        }
+    <div class="flex flex-col mb-2">
+        <div class="flex flex-wrap items-center gap-x-1 gap-y-1 mt-1">
+            <!-- <span class="text-sm mr-1 text-ayu-fg opacity-50 font-600"
+                >FILTER:</span
+            > -->
+            <Icon name="mdi:filter" class="w-5 h-5 text-ayu-gutter" />
+            {
+                sortedTags.map((tag) => (
+                    <span
+                        id={`tag-${tag}`}
+                        data-tag={tag}
+                        class="no-select cursor-pointer rounded-md border border-ayu-gutter text-ayu-fg px-2 py-0 text-xs font-600"
+                    >
+                        {tag}
+                    </span>
+                ))
+            }
+        </div>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 py-2">
         {
