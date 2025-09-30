@@ -69,6 +69,18 @@
     --ayu-red-900: #7f1d1d;
     --ayu-red-950: #450a0a;
 
+    --ayu-purple-50: #faf5ff;
+    --ayu-purple-100: #f3e8ff;
+    --ayu-purple-200: #e9d5ff;
+    --ayu-purple-300: #d8b4fe;
+    --ayu-purple-400: #c084fc;
+    --ayu-purple-500: #a855f7;
+    --ayu-purple-600: #9333ea;
+    --ayu-purple-700: #7e22ce;
+    --ayu-purple-800: #6b21a8;
+    --ayu-purple-900: #581c87;
+    --ayu-purple-950: #3b0764;
+
     --ayu-gray-50: #f9fafb;
     --ayu-gray-100: #f3f4f6;
     --ayu-gray-200: #e5e7eb;
@@ -144,6 +156,9 @@ body {
 .text-ayu-fg {
     color: var(--ayu-fg);
 }
+.text-ayu-bg {
+    color: var(--ayu-bg);
+}
 .text-ayu-accent {
     color: var(--ayu-accent);
 }
@@ -175,6 +190,9 @@ body {
 .text-ayu-blue-500 {
     color: var(--ayu-blue-500);
 }
+.text-ayu-purple-500 {
+    color: var(--ayu-purple-500);
+}
 .text-ayu-gray-500 {
     color: var(--ayu-gray-500);
 }
@@ -187,6 +205,9 @@ body {
 }
 .bg-ayu-blue-500 {
     background-color: var(--ayu-blue-500);
+}
+.bg-ayu-purple-500 {
+    background-color: var(--ayu-purple-500);
 }
 .bg-ayu-gray-500 {
     background-color: var(--ayu-gray-500);
