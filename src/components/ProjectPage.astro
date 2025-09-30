@@ -16,6 +16,8 @@ export interface Props {
 }
 
 const { metadata } = Astro.props;
+
+metadata.tags?.sort();
 ---
 
 <style>
