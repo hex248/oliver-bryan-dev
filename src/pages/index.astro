@@ -194,6 +194,10 @@ const sortedTags = Array.from(allTags).sort((a, b) => a.localeCompare(b));
         const selectedTagText = "text-ayu-bg";
         const unselectedTagBorder = "border-ayu-gutter";
         const unselectedTagText = "text-ayu-fg";
+        const miniSelectedTagBorder = "border-ayu-accent";
+        const miniSelectedTagText = "text-ayu-accent";
+        const miniUnselectedTagBorder = "border-ayu-gutter";
+        const miniUnselectedTagText = "text-ayu-fg";
 
         const tags = document.querySelectorAll("[data-tag]");
         const projects = document.getElementsByClassName("project-item");
@@ -241,18 +245,24 @@ const sortedTags = Array.from(allTags).sort((a, b) => a.localeCompare(b));
                             )
                     );
                     Array.from(tagElements).forEach((tag) => {
-                        tag.classList.remove(selectedTagBg, selectedTagText);
+                        tag.classList.remove(
+                            miniSelectedTagBorder,
+                            miniSelectedTagText
+                        );
                         tag.classList.add(
-                            unselectedTagBorder,
-                            unselectedTagText
+                            miniUnselectedTagBorder,
+                            miniUnselectedTagText
                         );
                     });
 
                     matchingTags.forEach((tag) => {
-                        tag.classList.add(selectedTagBg, selectedTagText);
+                        tag.classList.add(
+                            miniSelectedTagBorder,
+                            miniSelectedTagText
+                        );
                         tag.classList.remove(
-                            unselectedTagBorder,
-                            unselectedTagText
+                            miniUnselectedTagBorder,
+                            miniUnselectedTagText
                         );
                     });
                 } else {
