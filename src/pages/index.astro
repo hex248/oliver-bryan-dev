@@ -154,6 +154,10 @@ const sortedTags = Array.from(allTags).sort((a, b) => a.localeCompare(b));
             Development, Game Development, Python, JavaScript, TypeScript
         </li>
         <li>
+            <span class="text-ayu-blue-500 font-500">Age: </span>
+            <TimeSince date={new Date("11:47:00 2004-11-04")} client:react />
+        </li>
+        <!-- <li>
             <span class="text-ayu-red-500 font-500">Hobbies: </span>Music,
             Travel, Badminton, <a
                 href="https://photos.oliverbryan.com"
@@ -161,11 +165,7 @@ const sortedTags = Array.from(allTags).sort((a, b) => a.localeCompare(b));
                 rel="noopener noreferrer"
                 class="inline-link">Photography</a
             >
-        </li>
-        <li>
-            <span class="text-ayu-blue-500 font-500">Age: </span>
-            <TimeSince date={new Date("11:47:00 2004-11-04")} client:react />
-        </li>
+        </li> -->
     </ul>
 
     <h2 class="text-2xl font-600 text-ayu-green-500 mt-6">PROJECTS</h2>
