@@ -1,0 +1,37 @@
+---
+import ProjectPage from "../../components/ProjectPage.astro";
+
+export const metadata = {
+    title: "Shleep",
+    description:
+        "",
+    date: "February - June 2023",
+    slug: "shleep",
+    image: "/shleep-icon.svg",
+    url: "https://bigbootstudio.itch.io/shleep",
+    hidden: true,
+    tags: [
+        "Unity",
+        "C#",
+        "HLSL",
+        "VFX"
+    ],
+};
+---
+
+<ProjectPage metadata={metadata}>
+    <p>simple description here</p>
+
+    <p>images here</p>
+
+    <div class="bg-ayu-highlight p-4 rounded mt-4">
+        <h2 class="text-lg text-ayu-accent mb-2">Technologies</h2>
+        <ul class="list-disc list-inside space-y-1">
+            <li>Unity</li>
+            <li>C#</li>
+            <li>HLSL</li>
+            <li>Shader Graph</li>
+            <li>Visual Effects Graph</li>
+        </ul>
+    </div>
+</ProjectPage>
