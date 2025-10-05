@@ -13,6 +13,7 @@ interface ProjectMetadata {
     hidden: boolean;
     image?: string;
     tags?: string[];
+    type: string;
 }
 
 interface AstroModule {
@@ -146,7 +147,8 @@ const sortedTags = Array.from(allTags).sort((a, b) => a.localeCompare(b));
             Developer Junior
         </li>
         <li>
-            <span class="text-ayu-red-500 font-500">Education: </span>Final Year Software Engineeering (BEng), University of Westminster (2024-2026)
+            <span class="text-ayu-red-500 font-500">Education: </span>Final Year
+            Software Engineeering (BEng), University of Westminster (2024-2026)
         </li>
         <li>
             <span class="text-ayu-blue-500 font-500">Experience: </span>7 years,
@@ -171,43 +173,54 @@ const sortedTags = Array.from(allTags).sort((a, b) => a.localeCompare(b));
         </li> -->
     </ul>
 
-    <h2 class="text-2xl font-600 text-ayu-green-500 mt-6">PROJECTS</h2>
+    {
+        projects.filter((project) => project.type === "professional").length >
+            0 && (
+            <>
+                <h2 class="text-2xl font-600 text-ayu-green-500 mt-6">
+                    PROFESSIONAL PROJECTS
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 py-2">
+                    {projects
+                        .filter((project) => project.type === "professional")
+                        .map((project) => (
+                            <ProjectListItem
+                                title={project.title}
+                                description={project.description}
+                                date={project.date}
+                                image={project.image}
+                                slug={project.slug}
+                                isDevMode={isDevMode}
+                                isHidden={project.hidden}
+                                tags={project.tags || []}
+                            />
+                        ))}
+                </div>
+            </>
+        )
+    }
+ 
+    <h2 class="text-2xl font-600 text-ayu-green-500 mt-6">PERSONAL PROJECTS</h2>
 
-    <div class="flex flex-col mb-2">
-        <div class="flex flex-wrap items-center gap-x-1 gap-y-1 mt-1">
-            <!-- <span class="text-sm mr-1 text-ayu-fg opacity-50 font-600"
-                >FILTER:</span
-            > -->
-            <Icon name="mdi:filter" class="w-5 h-5 text-ayu-gutter" />
-            {
-                sortedTags.map((tag) => (
-                    <span
-                        id={`tag-${tag}`}
-                        data-tag={tag}
-                        class="no-select cursor-pointer rounded-md border border-ayu-gutter text-ayu-fg px-2 py-0 text-xs font-600"
-                    >
-                        {tag}
-                    </span>
-                ))
-            }
-        </div>
-    </div>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 py-2">
         {
-            projects.map((project) => (
-                <ProjectListItem
-                    title={project.title}
-                    description={project.description}
-                    date={project.date}
-                    image={project.image}
-                    slug={project.slug}
-                    isDevMode={isDevMode}
-                    isHidden={project.hidden}
-                    tags={project.tags || []}
-                />
-            ))
+            projects
+                .filter((project) => project.type === "personal")
+                .map((project) => (
+                    <ProjectListItem
+                        title={project.title}
+                        description={project.description}
+                        date={project.date}
+                        image={project.image}
+                        slug={project.slug}
+                        isDevMode={isDevMode}
+                        isHidden={project.hidden}
+                        tags={project.tags || []}
+                    />
+                ))
         }
     </div>
+
     <script>
         const selectedTagBg = "bg-ayu-accent";
         const selectedTagText = "text-ayu-bg";
