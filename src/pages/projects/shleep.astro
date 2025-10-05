@@ -1,5 +1,6 @@
 ---
 import ProjectPage from "../../components/ProjectPage.astro";
+import Demo from "../../components/Demo.astro";
 
 export const metadata = {
     title: "Shleep",
@@ -21,10 +22,8 @@ export const metadata = {
         help aid you and your party to protect a sleeping child from nightmares.
     </p>
 
-    <p>images here</p>
-
     <div class="bg-ayu-highlight p-4 rounded mt-4">
-        <h2 class="text-lg text-ayu-accent mb-2">Technologies</h2>
+        <h2 class="text-lg text-ayu-green-500 mb-2">Technologies</h2>
         <ul class="list-disc list-inside space-y-1">
             <li>Unity</li>
             <li>C#</li>
@@ -32,5 +31,19 @@ export const metadata = {
             <li>Shader Graph</li>
             <li>Visual Effects Graph</li>
         </ul>
+    </div>
+
+    <div class="mt-4">
+        <h2 class="text-2xl text-ayu-accent mb-3">Screenshots</h2>
+        <div
+            class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"
+        >
+            <Demo image="/images/shleep/1.png" title="1" type="boxed" />
+            <Demo image="/images/shleep/2.png" title="2" type="boxed" />
+            <Demo image="/images/shleep/3.png" title="3" type="boxed" />
+            <Demo image="/images/shleep/4.png" title="4" type="boxed" />
+            <Demo image="/images/shleep/5.png" title="5" type="boxed" />
+            <Demo image="/images/shleep/6.png" title="6" type="boxed" />
+        </div>
     </div>
 </ProjectPage>
