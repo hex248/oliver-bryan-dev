@@ -1,5 +1,6 @@
 ---
 import ProjectPage from "../../components/ProjectPage.astro";
+import Demo from "../../components/Demo.astro";
 
 export const metadata = {
     title: "MIZU",
@@ -44,5 +45,86 @@ export const metadata = {
         </ul>
     </div>
 
-    <p>images here</p>
+    <div class="mt-4">
+        <h2 class="text-2xl text-ayu-accent mb-3">Pre-Production</h2>
+        <div
+            class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"
+        >
+            <Demo
+                image="/images/mizu/forage-design.png"
+                title="Forage Design"
+                type="boxed"
+            />
+            <Demo
+                image="/images/mizu/forage-locations.png"
+                title="Forage Locations"
+                type="boxed"
+            />
+            <Demo
+                image="/images/mizu/quests-planning.png"
+                title="Quests Planning"
+                type="boxed"
+            />
+            <Demo
+                image="/images/mizu/update-planning.png"
+                title="Update Management"
+                type="boxed"
+            />
+            <Demo
+                image="/images/mizu/pack-planning.png"
+                title="Pack System"
+                type="boxed"
+            />
+        </div>
+    </div>
+
+    <div class="mt-4">
+        <h2 class="text-2xl text-ayu-accent mb-3">Screenshots</h2>
+        <div
+            class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"
+        >
+            <Demo
+                image="/images/mizu/card.png"
+                title="Card (Large image)"
+                type="boxed"
+            />
+            <Demo
+                image="/images/mizu/card-fighter.png"
+                title="Card (Fighter)"
+                type="boxed"
+            />
+            <Demo
+                image="/images/mizu/card-details.png"
+                title="Card (Details)"
+                type="boxed"
+            />
+            <Demo
+                image="/images/mizu/collection1.png"
+                title="Collection"
+                type="boxed"
+            />
+            <Demo
+                image="/images/mizu/collection2.png"
+                title="Collection with sorting and filtering"
+                type="boxed"
+            />
+            <Demo
+                image="/images/mizu/current-trade.png"
+                title="Ongoing Trade"
+                type="boxed"
+            />
+            <Demo
+                image="/images/mizu/complete-trade.png"
+                title="Completed Trade"
+                type="boxed"
+            />
+            <Demo image="/images/mizu/forage.png" title="Forage" type="boxed" />
+            <Demo
+                image="/images/mizu/inventory.png"
+                title="Inventory"
+                type="boxed"
+            />
+            <Demo image="/images/mizu/quests.png" title="Quests" type="boxed" />
+        </div>
+    </div>
 </ProjectPage>
