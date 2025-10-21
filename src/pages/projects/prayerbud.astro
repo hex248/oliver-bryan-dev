@@ -1,0 +1,96 @@
+---
+import ProjectPage from "../../components/ProjectPage.astro";
+import Demo from "../../components/Demo.astro";
+
+export const metadata = {
+    title: "PrayerBud",
+    description:
+        "A faith-based social platform facilitating sharing of support and prayers within communities.",
+    date: "2025",
+    slug: "prayerbud",
+    image: "/prayerbud-icon.svg",
+    url: "https://prayerbud.co.uk",
+    hidden: false,
+    tags: ["Web", "React", "TypeScript", "PostgreSQL", "Databases"],
+    type: "professional",
+};
+---
+
+<ProjectPage metadata={metadata}>
+    <div class="space-y-4 mb-4">
+        <p>
+            Pray Together & Grow Together: Join a diverse community of
+            individuals from around the world who are passionate about prayer
+            and spiritual growth. Create and share prayer requests with your
+            PrayerBud community who are ready to offer support, encouragement,
+            and heartfelt prayers.
+        </p>
+        <p>
+            For prayer teams or churches, the app offers a streamlined way to
+            manage and organise prayer requests, ensuring that no request goes
+            unnoticed.
+        </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="bg-ayu-highlight p-4 rounded">
+            <h2 class="text-lg text-ayu-green-500 mb-2">Key features</h2>
+            <ul class="list-disc list-inside space-y-1">
+                <li>Create and manage prayer networks</li>
+                <li>Manage prayer communities</li>
+                <li>Intimate engagement with friends and family</li>
+                <li>Admin dashboard for managing users and user content</li>
+                <li>Responsive design for mobile and desktop</li>
+            </ul>
+        </div>
+
+        <div class="bg-ayu-highlight p-4 rounded">
+            <h2 class="text-lg text-ayu-green-500 mb-2">Technologies</h2>
+            <ul class="list-disc list-inside space-y-1">
+                <li>Next.js</li>
+                <li>React</li>
+                <li>TypeScript</li>
+                <li>PostgreSQL</li>
+                <li>Node.js</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="mt-4">
+        <h2 class="text-2xl text-ayu-accent mb-3">Screenshots</h2>
+        <div
+            class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"
+        >
+            <Demo
+                image="/images/prayerbud/pre-login.png"
+                title="Front page / pre-login"
+                type="boxed"
+            />
+            <Demo
+                image="/images/prayerbud/post-login.png"
+                title="Post-login"
+                type="boxed"
+            />
+            <Demo
+                image="/images/prayerbud/create-network.png"
+                title="Create Network"
+                type="boxed"
+            />
+            <Demo
+                image="/images/prayerbud/welcome-to-network.png"
+                title="Welcome to your Network"
+                type="boxed"
+            />
+            <Demo
+                image="/images/prayerbud/prayer-card.png"
+                title="Create Prayer Card"
+                type="boxed"
+            />
+            <Demo
+                image="/images/prayerbud/dashboard.png"
+                title="Admin Dashboard"
+                type="boxed"
+            />
+        </div>
+    </div>
+</ProjectPage>
