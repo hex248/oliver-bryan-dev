@@ -8,19 +8,17 @@ interface Props {
 const { image, title, type = "simple" } = Astro.props;
 ---
 
-{type === "boxed" ? (
-    <div class="border demo-border">
-        <span>{title}</span>
+{
+    type === "boxed" ? (
+        <div class="border demo-border">
+            <span>{title}</span>
+            <img src={image} alt={title} class="object-cover w-full" />
+        </div>
+    ) : (
         <img
             src={image}
             alt={title}
-            class="object-cover"
+            class="w-full h-full object-cover demo-border"
         />
-    </div>
-) : (
-    <img
-        src={image}
-        alt={title}
-        class="w-full h-full object-cover demo-border"
-    />
-)}
+    )
+}
