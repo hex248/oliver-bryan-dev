@@ -1,5 +1,5 @@
 ---
-const { currentPage } = Astro.props;
+const { currentPage, innerClass } = Astro.props;
 
 const pages = [
     { title: "home", path: "/" },
@@ -24,10 +24,10 @@ const pages = [
 </style>
 
 <header>
-    <div
-        class="w-full flex items-center justify-between px-4 py-2 border-b-1 border-ayu-gutter"
-    >
-        <div class="flex items-center">
+    <div class="w-full flex items-center justify-between border-ayu-gutter">
+        <div
+            class={`flex items-center border-b-1 lg:border-1 border-ayu-gutter py-2 ${innerClass}`}
+        >
             <a href="/" class="flex items-center gap-2">
                 <img
                     src="/favicon.svg"
