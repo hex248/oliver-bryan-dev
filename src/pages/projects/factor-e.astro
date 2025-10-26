@@ -16,37 +16,19 @@ export const metadata = {
 };
 ---
 
-<style>
-    .green {
-        color: var(--ayu-green-500);
-    }
-
-    a {
-        text-decoration: none;
-        border-bottom: 1px solid var(--ayu-blue-500);
-        color: var(--ayu-blue-500);
-        transition:
-            color 0.1s,
-            border-color 0.1s;
-        margin-bottom: 16px;
-    }
-    a:hover {
-        color: var(--ayu-blue-600);
-        border-color: var(--ayu-blue-600);
-    }
-</style>
-
 <ProjectPage metadata={metadata}>
     <p>
         "factor-e" is an isometric factory sandbox prototype I built to learn
         C++ and <a
             href="https://www.raylib.com/"
             target="_blank"
-            rel="noopener noreferrer">raylib</a
+            rel="noopener noreferrer"
+            class="link-project-page">raylib</a
         >. Inspired by Minecraft and <a
             href="https://store.steampowered.com/app/3433610/Terrafactor/"
             target="_blank"
-            rel="noopener noreferrer">Terrafactor</a
+            rel="noopener noreferrer"
+            class="link-project-page">Terrafactor</a
         >, it explores tile-based building, inventory management and procedural
         world generation.
     </p>
