@@ -9,7 +9,7 @@ export const metadata = {
     date: "2021 - 2024",
     slug: "mizu",
     image: "/mizu-icon.svg",
-    hidden: true,
+    hidden: false,
     tags: [
         "Node.js",
         "TypeScript",
@@ -33,53 +33,22 @@ export const metadata = {
         leading a team and scaling a live application.
     </p>
 
-    <div class="bg-ayu-highlight p-4 rounded mt-4">
-        <h2 class="text-lg text-ayu-green-500 mb-2">Technologies</h2>
-        <ul class="list-disc list-inside space-y-1">
-            <li>Node.js</li>
-            <li>TypeScript</li>
-            <li>Express.js</li>
-            <li>Discord.js</li>
-            <li>PostgreSQL</li>
-            <li>AWS S3</li>
-        </ul>
-    </div>
-
-    <div class="mt-4">
-        <h2 class="text-2xl text-ayu-accent mb-3">Pre-Production</h2>
-        <div
-            class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"
-        >
-            <Demo
-                image="/images/mizu/forage-design.png"
-                title="Forage Design"
-                type="boxed"
-            />
-            <Demo
-                image="/images/mizu/forage-locations.png"
-                title="Forage Locations"
-                type="boxed"
-            />
-            <Demo
-                image="/images/mizu/quests-planning.png"
-                title="Quests Planning"
-                type="boxed"
-            />
-            <Demo
-                image="/images/mizu/update-planning.png"
-                title="Update Management"
-                type="boxed"
-            />
-            <Demo
-                image="/images/mizu/pack-planning.png"
-                title="Pack System"
-                type="boxed"
-            />
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-ayu-highlight p-4 rounded mt-4">
+            <h2 class="text-lg text-ayu-green-500 mb-2">Technologies</h2>
+            <ul class="list-disc list-inside space-y-1">
+                <li>Node.js</li>
+                <li>TypeScript</li>
+                <li>Express.js</li>
+                <li>Discord.js</li>
+                <li>PostgreSQL</li>
+                <li>AWS S3</li>
+            </ul>
         </div>
     </div>
 
     <div class="mt-4">
-        <h2 class="text-2xl text-ayu-accent mb-3">Screenshots</h2>
+        <h2 class="text-2xl text-ayu-accent mb-3">Gameplay</h2>
         <div
             class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"
         >
@@ -125,6 +94,39 @@ export const metadata = {
                 type="boxed"
             />
             <Demo image="/images/mizu/quests.png" title="Quests" type="boxed" />
+        </div>
+    </div>
+
+    <div class="mt-4">
+        <h2 class="text-2xl text-ayu-accent mb-3">Pre-Production</h2>
+        <div
+            class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"
+        >
+            <Demo
+                image="/images/mizu/forage-design.png"
+                title="Forage Design"
+                type="boxed"
+            />
+            <Demo
+                image="/images/mizu/forage-locations.png"
+                title="Forage Locations"
+                type="boxed"
+            />
+            <Demo
+                image="/images/mizu/quests-planning.png"
+                title="Quests Planning"
+                type="boxed"
+            />
+            <Demo
+                image="/images/mizu/update-planning.png"
+                title="Update Management"
+                type="boxed"
+            />
+            <Demo
+                image="/images/mizu/pack-planning.png"
+                title="Pack System"
+                type="boxed"
+            />
         </div>
     </div>
 </ProjectPage>
