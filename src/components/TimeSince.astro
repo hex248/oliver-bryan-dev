@@ -11,7 +11,7 @@ const uniqueId = `time-since-${Math.random().toString(36).substring(2, 9)}`;
     let interval = 1; // ms
     let msElapsed = 0;
 
-    function updateTimeAlive() {
+    function updateTimeSince() {
         let years = roundToDp(
             (currentTimeMS - dateMS + msElapsed) / (60 * 60 * 24 * 365.25 * 1000),
             2
@@ -29,10 +29,10 @@ const uniqueId = `time-since-${Math.random().toString(36).substring(2, 9)}`;
         return Math.floor(num * factor) / factor;
     }
 
-    updateTimeAlive();
+    updateTimeSince();
 
     setInterval(() => {
         msElapsed += interval;
-        updateTimeAlive();
+        updateTimeSince();
     }, interval);
 </script>
