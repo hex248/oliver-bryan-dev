@@ -308,7 +308,7 @@ body {
     transition:
         color 0.1s,
         border-color 0.1s;
-    margin-bottom: 16px;
+    margin-bottom: 8px;
 }
 .link-project-page:hover {
     color: var(--ayu-blue-600);
