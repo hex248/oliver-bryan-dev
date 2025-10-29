@@ -6,17 +6,18 @@ const uniqueId = `time-since-${Math.random().toString(36).substring(2, 9)}`;
 <span id={uniqueId} data-date={date.getTime()}></span>
 
 <script define:vars={{ uniqueId, dateMS: date.getTime() }}>
-    const currentTimeMS = Math.floor(new Date().getTime());
+    let rafId = null;
 
-    let interval = 1; // ms
-    let msElapsed = 0;
+    function roundToDp(num, dp) {
+        const factor = Math.pow(10, dp);
+        return Math.floor(num * factor) / factor;
+    }
 
-    function updateTimeSince() {
-        let years = roundToDp(
-            (currentTimeMS - dateMS + msElapsed) / (60 * 60 * 24 * 365.25 * 1000),
+    function render(milliseconds) {
+        const years = roundToDp(
+            milliseconds / (60 * 60 * 24 * 365.25 * 1000),
             2
         );
-        let milliseconds = currentTimeMS - dateMS + msElapsed;
 
         const element = document.getElementById(uniqueId);
         if (element) {
@@ -24,15 +25,38 @@ const uniqueId = `time-since-${Math.random().toString(36).substring(2, 9)}`;
         }
     }
 
-    function roundToDp(num, dp) {
-        const factor = Math.pow(10, dp);
-        return Math.floor(num * factor) / factor;
+    function tick() {
+        const now = Date.now();
+        const milliseconds = now - dateMS;
+        render(milliseconds);
+        rafId = requestAnimationFrame(tick);
     }
 
-    updateTimeSince();
+    render(Math.max(0, Date.now() - dateMS));
+    rafId = requestAnimationFrame(tick);
 
-    setInterval(() => {
-        msElapsed += interval;
-        updateTimeSince();
-    }, interval);
+    function onVisibilityChange() {
+        if (document.hidden) {
+            if (rafId) {
+                cancelAnimationFrame(rafId);
+                rafId = null;
+            }
+        } else {
+            if (!rafId) {
+                rafId = requestAnimationFrame(tick);
+            }
+        }
+    }
+
+    function cleanup() {
+        if (rafId) {
+            cancelAnimationFrame(rafId);
+            rafId = null;
+        }
+        window.removeEventListener("visibilitychange", onVisibilityChange);
+        window.removeEventListener("unload", cleanup);
+    }
+
+    window.addEventListener("visibilitychange", onVisibilityChange);
+    window.addEventListener("unload", cleanup);
 </script>
