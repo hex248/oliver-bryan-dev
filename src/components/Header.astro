@@ -1,4 +1,6 @@
 ---
+import { Icon } from "astro-icon/components";
+
 const { currentPage, innerClass } = Astro.props;
 
 const pages = [
@@ -21,38 +23,55 @@ const pages = [
     .cancel-button:hover .text {
         color: var(--ayu-red-500);
     }
+
+    .command-palette-toggle {
+        transition: color 0.3s ease;
+        cursor: pointer;
+    }
+    .command-palette-toggle:hover {
+        color: var(--ayu-accent);
+    }
 </style>
 
 <header>
     <div class="w-full flex items-center justify-between border-ayu-gutter">
         <div
-            class={`flex items-center border-b-1 lg:border-1 border-ayu-gutter py-2 ${innerClass}`}
+            class={`flex items-center justify-between border-b-1 lg:border-1 border-ayu-gutter py-2 ${innerClass}`}
         >
-            <a href="/" class="flex items-center gap-2">
-                <img
-                    src="/favicon.svg"
-                    alt="oliver bryan icon"
-                    class="h-6 w-6"
-                />
-                <h1 class="text-2xl text-ayu-red-500">oliver bryan</h1></a
+            <div class="flex items-center">
+                <a href="/" class="flex items-center gap-4">
+                    <img
+                        src="/favicon.svg"
+                        alt="oliver bryan icon"
+                        class="h-6 w-6"
+                    />
+                    <h1 class="text-2xl text-ayu-red-500">oliver bryan</h1></a
+                >
+                {
+                    !pages.find((page) => page.path === currentPage.path) && (
+                        <span class="flex items-center justify-start ml-4 text-ayu-gutter text-md">
+                            {"|"}
+                            <button
+                                class="cancel-button flex items-center justify-center gap-2 ml-4"
+                                type="button"
+                                onclick="window.location.href='/'"
+                            >
+                                <span class="text">{currentPage.path} </span>
+                                <span class="text-2xl leading-none text-ayu-red-500">
+                                    &times;
+                                </span>
+                            </button>
+                        </span>
+                    )
+                }
+            </div>
+            <span
+                class="flex items-center justify-center gap-2 text-ayu-gutter no-select command-palette-toggle"
+                onclick="toggleCommandPalette()"
             >
-            {
-                !pages.find((page) => page.path === currentPage.path) && (
-                    <span class="flex items-center justify-start ml-4 text-ayu-gutter text-md">
-                        {"|"}
-                        <button
-                            class="cancel-button flex items-center justify-center gap-2 ml-4"
-                            type="button"
-                            onclick="window.location.href='/'"
-                        >
-                            <span class="text">{currentPage.path} </span>
-                            <span class="text-2xl leading-none text-ayu-red-500">
-                                &times;
-                            </span>
-                        </button>
-                    </span>
-                )
-            }
+                ctrl + k
+                <Icon name="mdi:toy-brick-search" class="w-5 h-5" />
+            </span>
         </div>
     </div>
 </header>
