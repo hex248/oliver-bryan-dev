@@ -1,0 +1,211 @@
+---
+import type { AstroModule, ProjectMetadata } from "../pages/index.astro";
+
+interface Props {}
+
+const {} = Astro.props;
+
+const options = [{ name: "home", location: "/" }];
+// add all individual projects to options
+Object.values(
+    import.meta.glob<AstroModule>("../pages/projects/*.astro", { eager: true })
+).forEach((module) => {
+    const metadata = module.metadata as ProjectMetadata;
+    if (metadata) {
+        options.push({
+            name: `${metadata.title}`,
+            location: `/projects/${metadata.slug}`,
+        });
+    }
+});
+---
+
+<script>
+    let commandPaletteOpen = false;
+    let selectedOptionIndex = 0;
+    const noResults = document.getElementById("no-results");
+
+    const updateOptions = () => {
+        const input = document
+            .getElementById("command-palette")
+            ?.getElementsByTagName("input")[0];
+        if (!input) return;
+        const query = input.value.toLowerCase();
+        console.log(query);
+        const optionElements = document
+            .getElementById("command-palette")
+            ?.getElementsByTagName("a");
+        if (!optionElements) return;
+        for (let i = 0; i < optionElements.length; i++) {
+            const optionElement = optionElements[i];
+            const optionName = optionElement.textContent?.toLowerCase() || "";
+            if (optionName.includes(query)) {
+                optionElement.classList.remove("hidden");
+            } else {
+                optionElement.classList.add("hidden");
+            }
+
+            // if the selectedOptionIndex is hidden, move it to the next visible option
+            if (
+                i === selectedOptionIndex &&
+                optionElement.classList.contains("hidden")
+            ) {
+                let found = false;
+                for (let j = 0; j < optionElements.length; j++) {
+                    const nextIndex =
+                        (selectedOptionIndex + j) % optionElements.length;
+                    if (
+                        !optionElements[nextIndex].classList.contains("hidden")
+                    ) {
+                        selectedOptionIndex = nextIndex;
+                        showSelection();
+                        found = true;
+                        break;
+                    }
+                }
+            }
+
+            let allHidden = true;
+            for (let j = 0; j < optionElements.length; j++) {
+                if (!optionElements[j].classList.contains("hidden")) {
+                    allHidden = false;
+                    break;
+                }
+            }
+            if (allHidden) {
+                selectedOptionIndex = 0;
+                noResults?.removeAttribute("hidden");
+            } else {
+                noResults?.setAttribute("hidden", "true");
+            }
+        }
+    };
+    (window as any).updateOptions = updateOptions;
+
+    const showSelection = () => {
+        const commandPalette = document.getElementById("command-palette");
+        if (!commandPalette) return;
+        let options = commandPalette.getElementsByTagName("a");
+        for (let i = 0; i < options.length; i++) {
+            options[i].classList.remove("text-ayu-accent", "font-bold");
+        }
+        if (options.length > 0) {
+            // options[selectedOptionIndex].classList.add("border-ayu-gutter");
+            options[selectedOptionIndex].classList.add(
+                "text-ayu-accent",
+                "font-bold"
+            );
+        }
+    };
+
+    const toggleCommandPalette = () => {
+        const commandPalette = document.getElementById("command-palette");
+        if (!commandPalette) return;
+        commandPaletteOpen = !commandPaletteOpen;
+        commandPalette.classList.toggle("hidden");
+        if (commandPaletteOpen) {
+            commandPalette.getElementsByTagName("input")[0]?.focus();
+            selectedOptionIndex = 0;
+            showSelection();
+        }
+        const input = commandPalette.getElementsByTagName("input")[0];
+        if (input) {
+            input.value = "";
+        }
+        updateOptions();
+    };
+    (window as any).toggleCommandPalette = toggleCommandPalette;
+
+    const keydownHandler = (e: KeyboardEvent) => {
+        try {
+            if (!e) return;
+            const key = (e.key || "").toLowerCase();
+            const isCtrl = !!e.ctrlKey;
+            if (isCtrl && (key === "k" || key === "p")) {
+                toggleCommandPalette();
+
+                e.preventDefault();
+            }
+            if (key === "escape" && commandPaletteOpen) {
+                toggleCommandPalette();
+                e.preventDefault();
+            }
+            if (
+                (key === "arrowdown" || key === "arrowup") &&
+                commandPaletteOpen
+            ) {
+                const optionElements = document
+                    .getElementById("command-palette")
+                    ?.getElementsByTagName("a");
+                if (optionElements) {
+                    const operation = key === "arrowdown" ? 1 : -1;
+                    selectedOptionIndex =
+                        (selectedOptionIndex +
+                            operation +
+                            optionElements.length) %
+                        optionElements.length;
+                    showSelection();
+                }
+                e.preventDefault();
+            }
+
+            if (key === "enter" && commandPaletteOpen) {
+                const optionElements = document
+                    .getElementById("command-palette")
+                    ?.getElementsByTagName("a");
+                if (optionElements && optionElements[selectedOptionIndex]) {
+                    window.location.href =
+                        optionElements[selectedOptionIndex].href;
+                }
+            }
+        } catch (err) {
+            console.error("Command palette key handler error:", err);
+        }
+    };
+
+    document.addEventListener("keydown", keydownHandler);
+
+    window.addEventListener("unload", () => {
+        document.removeEventListener("keydown", keydownHandler);
+    });
+</script>
+
+<style>
+    #command-palette a:hover {
+        color: var(--ayu-accent);
+    }
+</style>
+
+<div
+    id="command-palette"
+    onclick="toggleCommandPalette()"
+    class="hidden fixed top-0 left-0 w-full h-full bg-ayu-bg-50percent flex items-center justify-center z-50"
+>
+    <div
+        onclick="event.stopPropagation()"
+        class="bg-ayu-bg border-ayu-accent border-2 rounded-xl w-[60%] max-w-2xl"
+    >
+        <div class="flex text-2xl border-ayu-accent w-full border-b-2">
+            <span class="p-4 pr-2"> search:</span>
+            <input
+                oninput="updateOptions()"
+                placeholder=""
+                class="p-4 pl-0 focus:outline-none flex-grow"
+            />
+        </div>
+
+        <div class="flex flex-col text-xl p-2 text-ayu-fg-secondary gap-2">
+            {
+                options.map((option, index) => (
+                    <a
+                        href={option.location}
+                        class="rounded-lg p-2 border-2 border-transparent"
+                    >
+                        {index}: {option.name}
+                    </a>
+                ))
+            }
+            <span id="no-results" class="p-2" hidden>no results found.</span>
+        </div>
+    </div>
+</div>

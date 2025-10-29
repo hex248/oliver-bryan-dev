@@ -5,7 +5,7 @@ import TimeSince from "../components/TimeSince.astro";
 
 import { Icon } from "astro-icon/components";
 
-interface ProjectMetadata {
+export interface ProjectMetadata {
     title: string;
     description: string;
     date: string;
@@ -16,7 +16,7 @@ interface ProjectMetadata {
     type: string;
 }
 
-interface AstroModule {
+export interface AstroModule {
     metadata?: ProjectMetadata;
 }
 

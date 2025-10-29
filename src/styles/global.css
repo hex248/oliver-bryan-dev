@@ -7,6 +7,7 @@
 
     /* core ayu colors */
     --ayu-bg: #10141c;
+    --ayu-bg-50percent: #00000080;
     --ayu-fg: #bfbdb6;
     --ayu-accent: #e6b450;
     --ayu-highlight: #161a24;
@@ -140,6 +141,9 @@ body {
 .bg-ayu-bg {
     background-color: var(--ayu-bg);
 }
+.bg-ayu-bg-50percent {
+    background-color: var(--ayu-bg-50percent);
+}
 .bg-ayu-highlight {
     background-color: var(--ayu-highlight);
 }
@@ -151,6 +155,12 @@ body {
 }
 .bg-ayu-selection {
     background-color: var(--ayu-selection);
+}
+.bg-ayu-gutter {
+    background-color: var(--ayu-gutter);
+}
+.bg-ayu-gutter-dim {
+    background-color: var(--ayu-gutter-dim);
 }
 
 .text-ayu-fg {
@@ -215,6 +225,18 @@ body {
 
 .border-ayu-accent {
     border-color: var(--ayu-accent);
+}
+.border-ayu-red-500 {
+    border-color: var(--ayu-red-500);
+}
+.border-ayu-green-500 {
+    border-color: var(--ayu-green-500);
+}
+.border-ayu-blue-500 {
+    border-color: var(--ayu-blue-500);
+}
+.border-ayu-purple-500 {
+    border-color: var(--ayu-purple-500);
 }
 .border-ayu-gutter {
     border-color: var(--ayu-gutter);

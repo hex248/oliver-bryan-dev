@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import CommandPalette from "../components/CommandPalette.astro";
 import Header from "../components/Header.astro";
 const { currentPage } = Astro.props;
 ---
@@ -11,6 +12,7 @@ const { currentPage } = Astro.props;
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <title>ob - {currentPage.title}</title>
     </head>
+    <CommandPalette />
     <body>
         <Header
             currentPage={currentPage}
@@ -22,4 +24,5 @@ const { currentPage } = Astro.props;
             <slot />
         </div>
     </body>
+
 </html>
