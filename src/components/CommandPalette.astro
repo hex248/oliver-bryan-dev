@@ -1,4 +1,5 @@
 ---
+import { Icon } from "astro-icon/components";
 import type { AstroModule, ProjectMetadata } from "../pages/index.astro";
 
 interface Props {}
@@ -186,7 +187,12 @@ Object.values(
         class="bg-ayu-bg border-ayu-accent border-2 rounded-xl w-[60%] max-w-2xl"
     >
         <div class="flex text-2xl border-ayu-accent w-full border-b-2">
-            <span class="p-4 pr-2"> search:</span>
+            <span class="flex items-center no-select p-4 pr-2 gap-2">
+                <Icon
+                    name="mdi:toy-brick-search"
+                    class="w-6 h-6"
+                />search:</span
+            >
             <input
                 oninput="updateOptions()"
                 placeholder=""
