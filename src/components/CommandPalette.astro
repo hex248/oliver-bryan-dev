@@ -7,6 +7,15 @@ interface Props {}
 const {} = Astro.props;
 
 const options = [{ name: "home", location: "/" }];
+options.push({
+    name: "GitHub",
+    location: "https://github.com/hex248",
+});
+options.push({
+    name: "CV",
+    location: "/cv.pdf",
+});
+
 // add all individual projects to options
 Object.values(
     import.meta.glob<AstroModule>("../pages/projects/*.astro", { eager: true })
