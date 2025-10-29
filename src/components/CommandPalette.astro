@@ -11,7 +11,7 @@ Object.values(
     import.meta.glob<AstroModule>("../pages/projects/*.astro", { eager: true })
 ).forEach((module) => {
     const metadata = module.metadata as ProjectMetadata;
-    if (metadata) {
+    if (metadata && !metadata.hidden) {
         options.push({
             name: `${metadata.title}`,
             location: `/projects/${metadata.slug}`,
