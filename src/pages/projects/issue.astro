@@ -1,0 +1,110 @@
+---
+import ProjectPage from "../../components/ProjectPage.astro";
+import Demo from "../../components/Demo.astro";
+
+export const metadata = {
+  title: "Issue",
+  description:
+    "A simple project management tool for developers. Born out of frustration with Jira.",
+  date: "December 2025 - Present",
+  slug: "issue",
+  image: "/issue-icon.svg",
+  url: "https://issue.ob248.com",
+  github: "https://github.com/hex248/issue",
+  hidden: false,
+  tags: [
+    "Web",
+    "React",
+    "TypeScript",
+    "Tauri",
+    "PostgreSQL",
+    "Databases",
+    "Bun",
+  ],
+  type: "personal",
+};
+---
+
+<ProjectPage metadata={metadata}>
+  <p class="mb-4">
+    Issue is a lightweight, self-hostable project management tool built for
+    developers who want simplicity over complexity. Frustrated with bloated
+    tools like Jira, I created Issue to focus on what matters: tracking tasks
+    within organisations and projects without the overhead. Deploy it on your
+    own infrastructure for full control over your data, and access it via the
+    web or as a native desktop application via Tauri.
+  </p>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div class="bg-ayu-highlight p-4 rounded">
+      <h2 class="text-lg text-ayu-green-500 mb-2">Key features</h2>
+      <ul class="list-disc list-inside space-y-1">
+        <li>Organisation and project management</li>
+        <li>Issue creation with titles and descriptions</li>
+        <li>Issue assignment to team members</li>
+        <li>Resizable split-pane interface</li>
+        <li>Role-based access (owner, admin, member)</li>
+        <li>Native desktop app via Tauri</li>
+        <li>Self-hostable</li>
+      </ul>
+    </div>
+
+    <div class="bg-ayu-highlight p-4 rounded">
+      <h2 class="text-lg text-ayu-green-500 mb-2">Technologies</h2>
+      <ul class="list-disc list-inside space-y-1">
+        <li>React + TypeScript (frontend)</li>
+        <li>Bun + Drizzle ORM (backend)</li>
+        <li>PostgreSQL</li>
+        <li>Tauri (desktop)</li>
+        <li>Tailwind CSS</li>
+        <li>JWT authentication</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="mt-4">
+    <h2 class="text-2xl text-ayu-accent mb-3">Architecture</h2>
+    <p class="mb-4">
+      Issue uses a monorepo structure with three packages: a shared package
+      containing database schemas and types, a backend API server running on Bun
+      with Drizzle ORM, and a React frontend that can be served as a web app or
+      bundled as a native desktop application with Tauri.
+    </p>
+  </div>
+
+  <div class="mt-4">
+    <h2 class="text-2xl text-ayu-accent mb-3">Screenshots</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <Demo
+        image="/images/issue/main-interface.png"
+        title="Main interface - issues list and detail pane"
+        type="boxed"
+      />
+      <Demo
+        image="/images/issue/selection.png"
+        title="Organisation and project selection"
+        type="boxed"
+      />
+      <Demo
+        image="/images/issue/issue-creation.png"
+        title="Issue creation dialog"
+        type="boxed"
+      />
+      <Demo
+        image="/images/issue/issue-detail-pane-assignee-selection.png"
+        title="Issue detail pane with assignee selection"
+        type="boxed"
+      />
+      <Demo
+        image="/images/issue/organisation-management.png"
+        title="Organisation management"
+        type="boxed"
+      />
+      <Demo
+        image="/images/issue/server-configuration.png"
+        title="Server configuration (self-hosting)"
+        type="boxed"
+      />
+    </div>
+  </div>
+</ProjectPage>
