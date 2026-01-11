@@ -1,0 +1,31 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const weights = [
+  200, 225, 250, 275, 300, 325, 350, 375, 400, 425, 450, 475, 500, 525, 550,
+  575, 600, 625, 650, 675, 700,
+];
+
+const sampleText = "The quick brown fox jumps over the lazy dog 0123456789.";
+---
+
+<Layout currentPage={{ title: "font", path: "/font" }}>
+  <h2 class="text-2xl font-600 text-ayu-green-500 mb-2">Commit Mono</h2>
+  <p class="text-ayu-gutter mb-6"></p>
+  <div class="flex flex-col gap-3">
+    {
+      weights.map((weight, index) => (
+        <div
+          class={`flex flex-wrap items-center gap-4 pb-2 ${index < weights.length - 1 ? "border-b border-ayu-gutter-dim" : ""}`}
+        >
+          <span class="w-6 text-ayu-gutter" style={`font-weight: ${weight};`}>
+            {weight}
+          </span>
+          <span class="text-lg" style={`font-weight: ${weight};`}>
+            {sampleText}
+          </span>
+        </div>
+      ))
+    }
+  </div>
+</Layout>
