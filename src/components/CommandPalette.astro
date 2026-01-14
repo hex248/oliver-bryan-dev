@@ -2,7 +2,7 @@
 import { Icon } from "astro-icon/components";
 import type { AstroModule, ProjectMetadata } from "../pages/index.astro";
 
-interface Props {}
+type Props = {};
 
 const {} = Astro.props;
 
@@ -17,17 +17,17 @@ options.push({
 });
 
 // add all individual projects to options
-Object.values(
-    import.meta.glob<AstroModule>("../pages/projects/*.astro", { eager: true })
-).forEach((module) => {
-    const metadata = module.metadata as ProjectMetadata;
-    if (metadata && !metadata.hidden) {
-        options.push({
-            name: `${metadata.title}`,
-            location: `/projects/${metadata.slug}`,
-        });
-    }
-});
+Object.values(import.meta.glob<AstroModule>("../pages/projects/*.astro", { eager: true })).forEach(
+    (module) => {
+        const metadata = module.metadata as ProjectMetadata;
+        if (metadata && !metadata.hidden) {
+            options.push({
+                name: `${metadata.title}`,
+                location: `/projects/${metadata.slug}`,
+            });
+        }
+    },
+);
 ---
 
 <script>

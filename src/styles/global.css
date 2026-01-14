@@ -263,12 +263,7 @@ body {
 }
 
 ::selection {
-    background-color: rgba(
-        51,
-        136,
-        255,
-        0.25
-    ); /* --ayu-selection with opacity */
+    background-color: rgba(51, 136, 255, 0.25); /* --ayu-selection with opacity */
     color: var(--ayu-fg);
 }
 
