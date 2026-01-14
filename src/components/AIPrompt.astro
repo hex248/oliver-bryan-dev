@@ -6,11 +6,12 @@ interface Props {
     url: string; // anything that precedes the prompt: e.g. "https://ai.example.com/?prompt="
     title: string;
     icon: string;
+    prompt?: string; // optional custom prompt, defaults to AI_SUMMARY_PROMPT
 }
 
-const { url, title, icon } = Astro.props;
+const { url, title, icon, prompt = AI_SUMMARY_PROMPT } = Astro.props;
 
-const fullUrl = url + encodeURIComponent(AI_SUMMARY_PROMPT);
+const fullUrl = url + encodeURIComponent(prompt);
 ---
 
 <a

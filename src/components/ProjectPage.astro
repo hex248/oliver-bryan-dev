@@ -1,5 +1,8 @@
 ---
+import { Icon } from "astro-icon/components";
 import Layout from "../layouts/Layout.astro";
+import { getProjectPrompt } from "../lib/constants";
+import AIPrompt from "./AIPrompt.astro";
 
 export interface Props {
     metadata: {
@@ -19,6 +22,8 @@ export interface Props {
 const { metadata } = Astro.props;
 
 metadata.tags?.sort();
+
+const projectPrompt = getProjectPrompt(metadata.title, metadata.description, metadata.slug);
 ---
 
 <style>
@@ -43,21 +48,57 @@ metadata.tags?.sort();
     }}
 >
     <div class="text-md">
-        <h1 class="text-2xl text-ayu-accent mb-2">
-            {metadata.title}
-        </h1>
+        <div class="flex justify-between items-start mb-2">
+            <div class="flex flex-col gap-2">
+                <h1 class="text-2xl text-ayu-accent">
+                    {metadata.title}
+                </h1>
+                {
+                    metadata.image ? (
+                        <img
+                            src={metadata.image}
+                            alt={`${metadata.title} project icon`}
+                            class="w-24 h-24 rounded mb-2"
+                        />
+                    ) : (
+                        <div class="w-24 h-24 mb-2 border border-ayu-gutter rounded" />
+                    )
+                }
+            </div>
+            <div class="flex flex-col items-end gap-2">
+                <p class="text-fg text-lg">Ask AI about this project</p>
+                <div class="flex gap-4 items-center">
+                    <AIPrompt
+                        url="https://chat.openai.com/?q="
+                        title="Ask ChatGPT"
+                        icon="simple-icons:openai"
+                        prompt={projectPrompt}
+                    />
+                    <AIPrompt
+                        url="https://claude.ai/new?q="
+                        title="Ask Claude"
+                        icon="simple-icons:claude"
+                        prompt={projectPrompt}
+                    />
+                    <div class="relative flex items-center">
+                        <button
+                            id="copy-prompt-btn"
+                            class="text-fg hover:text-[var(--ayu-accent)] transition-colors duration-150 cursor-pointer flex items-center"
+                            title="Copy prompt to clipboard"
+                        >
+                            <Icon name="mdi:content-copy" class="w-7 h-7" />
+                        </button>
+                        <span
+                            id="copy-tooltip"
+                            class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 text-xs bg-[var(--ayu-popup)] text-[var(--ayu-fg)] border border-[var(--ayu-gutter-dim)] rounded opacity-0 pointer-events-none transition-opacity duration-150 whitespace-nowrap"
+                        >
+                            Copied to clipboard
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-        {
-            metadata.image ? (
-                <img
-                    src={metadata.image}
-                    alt={`${metadata.title} project icon`}
-                    class="w-24 h-24 mb-4 rounded"
-                />
-            ) : (
-                <div class="w-24 h-24 mb-4 border border-ayu-gutter rounded" />
-            )
-        }
 
         <p class="text-sm text-ayu-gutter mb-2">
             {metadata.date}
@@ -126,4 +167,20 @@ metadata.tags?.sort();
             }
         </p>
     </div>
+
+    <script define:vars={{ projectPrompt }}>
+        document
+            .getElementById("copy-prompt-btn")
+            ?.addEventListener("click", async () => {
+                await navigator.clipboard.writeText(projectPrompt);
+
+                const tooltip = document.getElementById("copy-tooltip");
+                if (tooltip) {
+                    tooltip.style.opacity = "1";
+                    setTimeout(() => {
+                        tooltip.style.opacity = "0";
+                    }, 1500);
+                }
+            });
+    </script>
 </Layout>
