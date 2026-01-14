@@ -80,8 +80,6 @@ projects.forEach((project) => {
         allTags.add(tag);
     });
 });
-
-const sortedTags = Array.from(allTags).sort((a, b) => a.localeCompare(b));
 ---
 
 <style>
@@ -110,10 +108,42 @@ const sortedTags = Array.from(allTags).sort((a, b) => a.localeCompare(b));
 </style>
 
 <Layout currentPage={{ title: "home", path: "/" }}>
-  <div class="flex justify-between items-start mb-4">
-    <h2 class="text-2xl font-600 text-ayu-green-500">ABOUT</h2>
-    <div class="flex flex-col items-end gap-2">
-      <p class="text-ayu-gutter text-lg">Ask AI about me</p>
+  <div class="flex justify-between items-start mb-2">
+    <div class="flex flex-col gap-1">
+      <h2 class="text-2xl font-600 text-ayu-green-500">ABOUT</h2>
+      <span class="flex flex-wrap gap-2 mb-2">
+        <a
+          href="https://github.com/hex248"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="upper-icon-link flex items-center gap-1"
+          title="GitHub Profile"
+        >
+          <Icon name="mdi:github" class="w-5 h-5" />
+          hex248
+        </a>
+        / <a
+          href="mailto:ob248@proton.me"
+          class="upper-icon-link flex items-center gap-1"
+          title="Email"
+        >
+          <Icon name="mdi:email-outline" class="w-5 h-5" />
+          ob248@proton.me
+        </a>
+        / <a
+          href="/cv.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="upper-icon-link flex items-center gap-1"
+          title="Download CV"
+        >
+          <Icon name="mdi:file-document-outline" class="w-5 h-5" />
+          CV
+        </a>
+      </span>
+    </div>
+    <div id="ask-ai" class="flex flex-col items-end gap-2">
+      <p class="text-fg text-lg">Ask AI about me</p>
       <div class="flex gap-4 items-center">
         <AIPrompt
           url="https://chat.openai.com/?q="
@@ -128,7 +158,7 @@ const sortedTags = Array.from(allTags).sort((a, b) => a.localeCompare(b));
         <div class="relative flex items-center">
           <button
             id="copy-prompt-btn"
-            class="text-[var(--ayu-gutter)] hover:text-[var(--ayu-accent)] transition-colors duration-150 cursor-pointer flex items-center"
+            class="text-fg hover:text-[var(--ayu-accent)] transition-colors duration-150 cursor-pointer flex items-center"
             title="Copy prompt to clipboard"
           >
             <Icon name="mdi:content-copy" class="w-7 h-7" />
@@ -143,36 +173,6 @@ const sortedTags = Array.from(allTags).sort((a, b) => a.localeCompare(b));
       </div>
     </div>
   </div>
-  <span class="flex flex-wrap gap-2 mb-2">
-    <a
-      href="https://github.com/hex248"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="upper-icon-link flex items-center gap-1"
-      title="GitHub Profile"
-    >
-      <Icon name="mdi:github" class="w-5 h-5" />
-      hex248
-    </a>
-    / <a
-      href="mailto:ob248@proton.me"
-      class="upper-icon-link flex items-center gap-1"
-      title="Email"
-    >
-      <Icon name="mdi:email-outline" class="w-5 h-5" />
-      ob248@proton.me
-    </a>
-    / <a
-      href="/cv.pdf"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="upper-icon-link flex items-center gap-1"
-      title="Download CV"
-    >
-      <Icon name="mdi:file-document-outline" class="w-5 h-5" />
-      CV
-    </a>
-  </span>
   <ul class="list-disc ml-4 mb-2">
     <li>
       <span class="text-ayu-red-500 font-500">Name: </span>Oliver Bryan
@@ -197,15 +197,6 @@ const sortedTags = Array.from(allTags).sort((a, b) => a.localeCompare(b));
       <span class="text-ayu-blue-500 font-500">Age: </span>
       <TimeSince date={new Date("11:47:00 2004-11-04")} client:react />
     </li>
-    <!-- <li>
-            <span class="text-ayu-red-500 font-500">Hobbies: </span>Music,
-            Travel, Badminton, <a
-                href="https://photos.oliverbryan.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="inline-link">Photography</a
-            >
-        </li> -->
   </ul>
 
   {
@@ -215,7 +206,7 @@ const sortedTags = Array.from(allTags).sort((a, b) => a.localeCompare(b));
         <h2 class="text-2xl font-600 text-ayu-green-500 mt-6">
           PROFESSIONAL PROJECTS
         </h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 py-2">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 pt-2">
           {projects
             .filter((project) => project.type === "professional")
             .map((project) => (
@@ -237,7 +228,7 @@ const sortedTags = Array.from(allTags).sort((a, b) => a.localeCompare(b));
 
   <h2 class="text-2xl font-600 text-ayu-green-500 mt-6">PERSONAL PROJECTS</h2>
 
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 py-2">
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 pt-2">
     {
       projects
         .filter((project) => project.type === "personal")
