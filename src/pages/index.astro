@@ -50,7 +50,7 @@ function parseDate(dateStr: string): Date {
         if (lower.includes(monthName)) {
             const yearMatch = dateStr.match(/\b(20\d{2})\b/);
             if (yearMatch) {
-                return new Date(parseInt(yearMatch[1]), monthIndex, 1);
+                return new Date(parseInt(yearMatch[1], 10), monthIndex, 1);
             }
         }
     }
@@ -58,7 +58,7 @@ function parseDate(dateStr: string): Date {
     // fallback: try to extract any year
     const yearMatch = dateStr.match(/\b(20\d{2})\b/);
     if (yearMatch) {
-        return new Date(parseInt(yearMatch[1]), 0, 1);
+        return new Date(parseInt(yearMatch[1], 10), 0, 1);
     }
 
     return new Date(0);
@@ -76,7 +76,9 @@ const projects: ProjectMetadata[] = Object.values(
 
 const allTags = new Set<string>();
 projects.forEach((project) => {
-    project.tags?.forEach((tag) => allTags.add(tag));
+    project.tags?.forEach((tag) => {
+        allTags.add(tag);
+    });
 });
 
 const sortedTags = Array.from(allTags).sort((a, b) => a.localeCompare(b));
