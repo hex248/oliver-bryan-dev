@@ -1,168 +1,201 @@
 ---
-import Layout from "../layouts/Layout.astro";
+import { Icon } from "astro-icon/components";
+import AIPrompt from "../components/AIPrompt.astro";
 import ProjectListItem from "../components/ProjectListItem.astro";
 import TimeSince from "../components/TimeSince.astro";
-
-import { Icon } from "astro-icon/components";
+import Layout from "../layouts/Layout.astro";
+import { AI_SUMMARY_PROMPT } from "../lib/constants";
 
 export interface ProjectMetadata {
-    title: string;
-    description: string;
-    date: string;
-    slug: string;
-    hidden: boolean;
-    image?: string;
-    tags?: string[];
-    type: string;
+  title: string;
+  description: string;
+  date: string;
+  slug: string;
+  hidden: boolean;
+  image?: string;
+  tags?: string[];
+  type: string;
 }
 
 export interface AstroModule {
-    metadata?: ProjectMetadata;
+  metadata?: ProjectMetadata;
 }
 
 function parseDate(dateStr: string): Date {
-    // formats like "February 2024", "January - June 2024", "Q1 2023", etc
-    const lower = dateStr.toLowerCase();
+  // formats like "February 2024", "January - June 2024", "Q1 2023", etc
+  const lower = dateStr.toLowerCase();
 
-    if (lower.includes("q1")) return new Date("2023-01-01");
-    if (lower.includes("q2")) return new Date("2023-04-01");
-    if (lower.includes("q3")) return new Date("2023-07-01");
-    if (lower.includes("q4")) return new Date("2023-10-01");
+  if (lower.includes("q1")) return new Date("2023-01-01");
+  if (lower.includes("q2")) return new Date("2023-04-01");
+  if (lower.includes("q3")) return new Date("2023-07-01");
+  if (lower.includes("q4")) return new Date("2023-10-01");
 
-    const months: Record<string, number> = {
-        january: 0,
-        february: 1,
-        march: 2,
-        april: 3,
-        may: 4,
-        june: 5,
-        july: 6,
-        august: 7,
-        september: 8,
-        october: 9,
-        november: 10,
-        december: 11,
-    };
+  const months: Record<string, number> = {
+    january: 0,
+    february: 1,
+    march: 2,
+    april: 3,
+    may: 4,
+    june: 5,
+    july: 6,
+    august: 7,
+    september: 8,
+    october: 9,
+    november: 10,
+    december: 11,
+  };
 
-    // month and year
-    for (const [monthName, monthIndex] of Object.entries(months)) {
-        if (lower.includes(monthName)) {
-            const yearMatch = dateStr.match(/\b(20\d{2})\b/);
-            if (yearMatch) {
-                return new Date(parseInt(yearMatch[1]), monthIndex, 1);
-            }
-        }
+  // month and year
+  for (const [monthName, monthIndex] of Object.entries(months)) {
+    if (lower.includes(monthName)) {
+      const yearMatch = dateStr.match(/\b(20\d{2})\b/);
+      if (yearMatch) {
+        return new Date(parseInt(yearMatch[1]), monthIndex, 1);
+      }
     }
+  }
 
-    // fallback: try to extract any year
-    const yearMatch = dateStr.match(/\b(20\d{2})\b/);
-    if (yearMatch) {
-        return new Date(parseInt(yearMatch[1]), 0, 1);
-    }
+  // fallback: try to extract any year
+  const yearMatch = dateStr.match(/\b(20\d{2})\b/);
+  if (yearMatch) {
+    return new Date(parseInt(yearMatch[1]), 0, 1);
+  }
 
-    return new Date(0);
+  return new Date(0);
 }
 
 const isDevMode = import.meta.env.PUBLIC_DEV === "1";
 
 const projects: ProjectMetadata[] = Object.values(
-    import.meta.glob<AstroModule>("./projects/*.astro", { eager: true })
+  import.meta.glob<AstroModule>("./projects/*.astro", { eager: true })
 )
-    .map((module) => module.metadata)
-    .filter((metadata): metadata is ProjectMetadata => metadata !== undefined)
-    .filter((project) => !project.hidden || isDevMode)
-    .sort((a, b) => parseDate(b.date).getTime() - parseDate(a.date).getTime());
+  .map((module) => module.metadata)
+  .filter((metadata): metadata is ProjectMetadata => metadata !== undefined)
+  .filter((project) => !project.hidden || isDevMode)
+  .sort((a, b) => parseDate(b.date).getTime() - parseDate(a.date).getTime());
 
 const allTags = new Set<string>();
 projects.forEach((project) => {
-    project.tags?.forEach((tag) => allTags.add(tag));
+  project.tags?.forEach((tag) => allTags.add(tag));
 });
 
 const sortedTags = Array.from(allTags).sort((a, b) => a.localeCompare(b));
 ---
 
 <style>
-    .inline-link {
-        text-decoration: none;
-        border-bottom: 1px solid var(--ayu-blue-500);
-        color: var(--ayu-blue-500);
-        transition:
-            color 0.1s,
-            border-color 0.1s;
-        margin-bottom: 16px;
-    }
-    .inline-link:hover {
-        color: var(--ayu-blue-600);
-        border-color: var(--ayu-blue-600);
-    }
+  .inline-link {
+    text-decoration: none;
+    border-bottom: 1px solid var(--ayu-blue-500);
+    color: var(--ayu-blue-500);
+    transition:
+      color 0.1s,
+      border-color 0.1s;
+    margin-bottom: 16px;
+  }
+  .inline-link:hover {
+    color: var(--ayu-blue-600);
+    border-color: var(--ayu-blue-600);
+  }
 
-    .upper-icon-link {
-        color: var(--ayu-accent);
-        transition: color 0.2s ease;
-    }
+  .upper-icon-link {
+    color: var(--ayu-accent);
+    transition: color 0.2s ease;
+  }
 
-    .upper-icon-link:hover {
-        color: var(--ayu-red-500);
-    }
+  .upper-icon-link:hover {
+    color: var(--ayu-red-500);
+  }
 </style>
 
 <Layout currentPage={{ title: "home", path: "/" }}>
-    <h2 class="text-2xl font-600 text-ayu-green-500 mb-2">ABOUT</h2>
-    <span class="flex flex-wrap gap-2 mb-2">
-        <a
-            href="https://github.com/hex248"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="upper-icon-link flex items-center gap-1"
-            title="GitHub Profile"
-        >
-            <Icon name="mdi:github" class="w-5 h-5" />
-            hex248
-        </a>
-        / <a
-            href="mailto:ob248@proton.me"
-            class="upper-icon-link flex items-center gap-1"
-            title="Email"
-        >
-            <Icon name="mdi:email-outline" class="w-5 h-5" />
-            ob248@proton.me
-        </a>
-        / <a
-            href="/cv.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="upper-icon-link flex items-center gap-1"
-            title="Download CV"
-        >
-            <Icon name="mdi:file-document-outline" class="w-5 h-5" />
-            CV
-        </a>
-    </span>
-    <ul class="list-disc ml-4 mb-2">
-        <li>
-            <span class="text-ayu-red-500 font-500">Name: </span>Oliver Bryan
-        </li>
-        <li>
-            <span class="text-ayu-blue-500 font-500">Role: </span>Junior
-            Software Developer
-        </li>
-        <li>
-            <span class="text-ayu-red-500 font-500">Education: </span>Final Year
-            Software Engineeering (BEng), University of Westminster (2024-2026)
-        </li>
-        <li>
-            <span class="text-ayu-blue-500 font-500">Experience: </span>7 years,
-            1 year in industry as a Junior Software Developer
-        </li>
-        <li>
-            <span class="text-ayu-red-500 font-500">Skills: </span>Web
-            Development, Game Development, Python, JavaScript, TypeScript
-        </li>
-        <li>
-            <span class="text-ayu-blue-500 font-500">Age: </span>
-            <TimeSince date={new Date("11:47:00 2004-11-04")} client:react />
-        </li>
-        <!-- <li>
+  <div class="flex justify-between items-start mb-4">
+    <h2 class="text-2xl font-600 text-ayu-green-500">ABOUT</h2>
+    <div class="flex flex-col items-end gap-2">
+      <p class="text-ayu-gutter text-lg">Ask AI about me</p>
+      <div class="flex gap-4 items-center">
+        <AIPrompt
+          url="https://chat.openai.com/?q="
+          title="Ask ChatGPT"
+          icon="simple-icons:openai"
+        />
+        <AIPrompt
+          url="https://claude.ai/new?q="
+          title="Ask Claude"
+          icon="simple-icons:claude"
+        />
+        <div class="relative flex items-center">
+          <button
+            id="copy-prompt-btn"
+            class="text-[var(--ayu-gutter)] hover:text-[var(--ayu-accent)] transition-colors duration-150 cursor-pointer flex items-center"
+            title="Copy prompt to clipboard"
+          >
+            <Icon name="mdi:content-copy" class="w-7 h-7" />
+          </button>
+          <span
+            id="copy-tooltip"
+            class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 text-sm bg-[var(--ayu-popup)] text-[var(--ayu-fg)] border border-[var(--ayu-gutter-dim)] rounded opacity-0 pointer-events-none transition-opacity duration-150 whitespace-nowrap"
+          >
+            Copied to clipboard
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <span class="flex flex-wrap gap-2 mb-2">
+    <a
+      href="https://github.com/hex248"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="upper-icon-link flex items-center gap-1"
+      title="GitHub Profile"
+    >
+      <Icon name="mdi:github" class="w-5 h-5" />
+      hex248
+    </a>
+    / <a
+      href="mailto:ob248@proton.me"
+      class="upper-icon-link flex items-center gap-1"
+      title="Email"
+    >
+      <Icon name="mdi:email-outline" class="w-5 h-5" />
+      ob248@proton.me
+    </a>
+    / <a
+      href="/cv.pdf"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="upper-icon-link flex items-center gap-1"
+      title="Download CV"
+    >
+      <Icon name="mdi:file-document-outline" class="w-5 h-5" />
+      CV
+    </a>
+  </span>
+  <ul class="list-disc ml-4 mb-2">
+    <li>
+      <span class="text-ayu-red-500 font-500">Name: </span>Oliver Bryan
+    </li>
+    <li>
+      <span class="text-ayu-blue-500 font-500">Role: </span>Junior Software
+      Developer
+    </li>
+    <li>
+      <span class="text-ayu-red-500 font-500">Education: </span>Final Year
+      Software Engineeering (BEng), University of Westminster (2024-2026)
+    </li>
+    <li>
+      <span class="text-ayu-blue-500 font-500">Experience: </span>7 years, 1
+      year in industry as a Junior Software Developer
+    </li>
+    <li>
+      <span class="text-ayu-red-500 font-500">Skills: </span>Web Development,
+      Game Development, Python, JavaScript, TypeScript
+    </li>
+    <li>
+      <span class="text-ayu-blue-500 font-500">Age: </span>
+      <TimeSince date={new Date("11:47:00 2004-11-04")} client:react />
+    </li>
+    <!-- <li>
             <span class="text-ayu-red-500 font-500">Hobbies: </span>Music,
             Travel, Badminton, <a
                 href="https://photos.oliverbryan.com"
@@ -171,152 +204,150 @@ const sortedTags = Array.from(allTags).sort((a, b) => a.localeCompare(b));
                 class="inline-link">Photography</a
             >
         </li> -->
-    </ul>
+  </ul>
 
+  {
+    projects.filter((project) => project.type === "professional").length >
+      0 && (
+      <>
+        <h2 class="text-2xl font-600 text-ayu-green-500 mt-6">
+          PROFESSIONAL PROJECTS
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 py-2">
+          {projects
+            .filter((project) => project.type === "professional")
+            .map((project) => (
+              <ProjectListItem
+                title={project.title}
+                description={project.description}
+                date={project.date}
+                image={project.image}
+                slug={project.slug}
+                isDevMode={isDevMode}
+                isHidden={project.hidden}
+                tags={project.tags || []}
+              />
+            ))}
+        </div>
+      </>
+    )
+  }
+
+  <h2 class="text-2xl font-600 text-ayu-green-500 mt-6">PERSONAL PROJECTS</h2>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 py-2">
     {
-        projects.filter((project) => project.type === "professional").length >
-            0 && (
-            <>
-                <h2 class="text-2xl font-600 text-ayu-green-500 mt-6">
-                    PROFESSIONAL PROJECTS
-                </h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 py-2">
-                    {projects
-                        .filter((project) => project.type === "professional")
-                        .map((project) => (
-                            <ProjectListItem
-                                title={project.title}
-                                description={project.description}
-                                date={project.date}
-                                image={project.image}
-                                slug={project.slug}
-                                isDevMode={isDevMode}
-                                isHidden={project.hidden}
-                                tags={project.tags || []}
-                            />
-                        ))}
-                </div>
-            </>
-        )
+      projects
+        .filter((project) => project.type === "personal")
+        .map((project) => (
+          <ProjectListItem
+            title={project.title}
+            description={project.description}
+            date={project.date}
+            image={project.image}
+            slug={project.slug}
+            isDevMode={isDevMode}
+            isHidden={project.hidden}
+            tags={project.tags || []}
+          />
+        ))
+    }
+  </div>
+
+  <script>
+    const selectedTagBg = "bg-ayu-accent";
+    const selectedTagText = "text-ayu-bg";
+    const unselectedTagBorder = "border-ayu-gutter";
+    const unselectedTagText = "text-ayu-fg";
+    const miniSelectedTagBorder = "border-ayu-accent";
+    const miniSelectedTagText = "text-ayu-accent";
+    const miniUnselectedTagBorder = "border-ayu-gutter";
+    const miniUnselectedTagText = "text-ayu-fg";
+
+    const tags = document.querySelectorAll("[data-tag]");
+    const projects = document.getElementsByClassName("project-item");
+
+    const selectedTags = new Set<string>();
+
+    function updateTagStyles() {
+      tags.forEach((tag) => {
+        const tagName = tag.getAttribute("data-tag");
+        if (selectedTags.has(tagName || "")) {
+          tag.classList.add(selectedTagBg, selectedTagText);
+          tag.classList.remove(unselectedTagBorder, unselectedTagText);
+        } else {
+          tag.classList.remove(selectedTagBg, selectedTagText);
+          tag.classList.add(unselectedTagBorder, unselectedTagText);
+        }
+      });
     }
 
-    <h2 class="text-2xl font-600 text-ayu-green-500 mt-6">PERSONAL PROJECTS</h2>
+    function updateProjects() {
+      Array.from(projects).forEach((project) => {
+        const projectTags =
+          project
+            .getAttribute("data-tags")
+            ?.split(",")
+            .map((t) => t.trim()) || [];
+        const hasAllTags =
+          selectedTags.size === 0 ||
+          Array.from(selectedTags).every((tag) => projectTags.includes(tag));
+        if (hasAllTags) {
+          (project as HTMLElement).style.display = "block";
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 py-2">
-        {
-            projects
-                .filter((project) => project.type === "personal")
-                .map((project) => (
-                    <ProjectListItem
-                        title={project.title}
-                        description={project.description}
-                        date={project.date}
-                        image={project.image}
-                        slug={project.slug}
-                        isDevMode={isDevMode}
-                        isHidden={project.hidden}
-                        tags={project.tags || []}
-                    />
-                ))
+          const tagElements = project.getElementsByClassName("project-tag");
+
+          const matchingTags = Array.from(tagElements).filter((tagElement) =>
+            selectedTags.has((tagElement as HTMLElement).innerText)
+          );
+          Array.from(tagElements).forEach((tag) => {
+            tag.classList.remove(miniSelectedTagBorder, miniSelectedTagText);
+            tag.classList.add(miniUnselectedTagBorder, miniUnselectedTagText);
+          });
+
+          matchingTags.forEach((tag) => {
+            tag.classList.add(miniSelectedTagBorder, miniSelectedTagText);
+            tag.classList.remove(
+              miniUnselectedTagBorder,
+              miniUnselectedTagText
+            );
+          });
+        } else {
+          (project as HTMLElement).style.display = "none";
         }
-    </div>
+      });
+    }
 
-    <script>
-        const selectedTagBg = "bg-ayu-accent";
-        const selectedTagText = "text-ayu-bg";
-        const unselectedTagBorder = "border-ayu-gutter";
-        const unselectedTagText = "text-ayu-fg";
-        const miniSelectedTagBorder = "border-ayu-accent";
-        const miniSelectedTagText = "text-ayu-accent";
-        const miniUnselectedTagBorder = "border-ayu-gutter";
-        const miniUnselectedTagText = "text-ayu-fg";
+    tags.forEach((tag) => {
+      tag.addEventListener("click", () => {
+        const tagName = tag.getAttribute("data-tag");
+        if (!tagName) return;
 
-        const tags = document.querySelectorAll("[data-tag]");
-        const projects = document.getElementsByClassName("project-item");
-
-        const selectedTags = new Set<string>();
-
-        function updateTagStyles() {
-            tags.forEach((tag) => {
-                const tagName = tag.getAttribute("data-tag");
-                if (selectedTags.has(tagName || "")) {
-                    tag.classList.add(selectedTagBg, selectedTagText);
-                    tag.classList.remove(
-                        unselectedTagBorder,
-                        unselectedTagText
-                    );
-                } else {
-                    tag.classList.remove(selectedTagBg, selectedTagText);
-                    tag.classList.add(unselectedTagBorder, unselectedTagText);
-                }
-            });
+        if (selectedTags.has(tagName)) {
+          selectedTags.delete(tagName);
+        } else {
+          selectedTags.add(tagName);
         }
 
-        function updateProjects() {
-            Array.from(projects).forEach((project) => {
-                const projectTags =
-                    project
-                        .getAttribute("data-tags")
-                        ?.split(",")
-                        .map((t) => t.trim()) || [];
-                const hasAllTags =
-                    selectedTags.size === 0 ||
-                    Array.from(selectedTags).every((tag) =>
-                        projectTags.includes(tag)
-                    );
-                if (hasAllTags) {
-                    (project as HTMLElement).style.display = "block";
+        updateTagStyles();
+        updateProjects();
+      });
+    });
+  </script>
 
-                    const tagElements =
-                        project.getElementsByClassName("project-tag");
+  <script define:vars={{ AI_SUMMARY_PROMPT }}>
+    document
+      .getElementById("copy-prompt-btn")
+      ?.addEventListener("click", async () => {
+        await navigator.clipboard.writeText(AI_SUMMARY_PROMPT);
 
-                    const matchingTags = Array.from(tagElements).filter(
-                        (tagElement) =>
-                            selectedTags.has(
-                                (tagElement as HTMLElement).innerText
-                            )
-                    );
-                    Array.from(tagElements).forEach((tag) => {
-                        tag.classList.remove(
-                            miniSelectedTagBorder,
-                            miniSelectedTagText
-                        );
-                        tag.classList.add(
-                            miniUnselectedTagBorder,
-                            miniUnselectedTagText
-                        );
-                    });
-
-                    matchingTags.forEach((tag) => {
-                        tag.classList.add(
-                            miniSelectedTagBorder,
-                            miniSelectedTagText
-                        );
-                        tag.classList.remove(
-                            miniUnselectedTagBorder,
-                            miniUnselectedTagText
-                        );
-                    });
-                } else {
-                    (project as HTMLElement).style.display = "none";
-                }
-            });
+        const tooltip = document.getElementById("copy-tooltip");
+        if (tooltip) {
+          tooltip.style.opacity = "1";
+          setTimeout(() => {
+            tooltip.style.opacity = "0";
+          }, 1000);
         }
-
-        tags.forEach((tag) => {
-            tag.addEventListener("click", () => {
-                const tagName = tag.getAttribute("data-tag");
-                if (!tagName) return;
-
-                if (selectedTags.has(tagName)) {
-                    selectedTags.delete(tagName);
-                } else {
-                    selectedTags.add(tagName);
-                }
-
-                updateTagStyles();
-                updateProjects();
-            });
-        });
-    </script>
+      });
+  </script>
 </Layout>

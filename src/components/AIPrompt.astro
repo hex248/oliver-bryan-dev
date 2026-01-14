@@ -1,0 +1,24 @@
+---
+import { Icon } from "astro-icon/components";
+import { AI_SUMMARY_PROMPT } from "../lib/constants";
+
+interface Props {
+  url: string; // anything that precedes the prompt: e.g. "https://ai.example.com/?prompt="
+  title: string;
+  icon: string;
+}
+
+const { url, title, icon } = Astro.props;
+
+const fullUrl = url + encodeURIComponent(AI_SUMMARY_PROMPT);
+---
+
+<a
+  href={fullUrl}
+  target="_blank"
+  rel="noopener noreferrer"
+  class="text-[var(--ayu-gutter)] hover:text-[var(--ayu-accent)] transition-colors duration-150"
+  title={title}
+>
+  <Icon name={icon} class="w-7 h-7" />
+</a>
