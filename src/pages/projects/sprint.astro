@@ -3,13 +3,13 @@ import Demo from "../../components/Demo.astro";
 import ProjectPage from "../../components/ProjectPage.astro";
 
 export const metadata = {
-    title: "Issue",
+    title: "Sprint",
     description: "A simple project management tool for developers. Born out of frustration with Jira.",
     date: "December 2025 - Present",
-    slug: "issue",
-    image: "/issue-icon.svg",
-    url: "https://issue.ob248.com",
-    github: "https://github.com/hex248/issue",
+    slug: "sprint",
+    image: "/sprint-icon.svg",
+    url: "https://sprint.ob248.com",
+    github: "https://github.com/hex248/sprint",
     hidden: false,
     tags: ["Web", "React", "TypeScript", "Tauri", "PostgreSQL", "Databases", "Bun"],
     type: "personal",
@@ -18,9 +18,9 @@ export const metadata = {
 
 <ProjectPage metadata={metadata}>
   <p class="mb-4">
-    Issue is a lightweight, self-hostable project management tool built for
+    Sprint is a lightweight, self-hostable project management tool built for
     developers who want simplicity over complexity. Frustrated with bloated
-    tools like Jira, I created Issue to focus on what matters: tracking tasks
+    tools like Jira, I created Sprint to focus on what matters: tracking tasks
     within organisations and projects without the overhead. Deploy it on your
     own infrastructure for full control over your data, and access it via the
     web or as a native desktop application via Tauri.
@@ -59,7 +59,7 @@ export const metadata = {
   <div class="mt-4">
     <h2 class="text-2xl text-ayu-accent mb-3">Architecture</h2>
     <p class="mb-4">
-      Issue uses a monorepo structure with three packages: a shared package
+      Sprint uses a monorepo structure with three packages: a shared package
       containing database schemas and types, a backend API server running on Bun
       with Drizzle ORM, and a React frontend that can be served as a web app or
       bundled as a native desktop application with Tauri.
@@ -70,32 +70,32 @@ export const metadata = {
     <h2 class="text-2xl text-ayu-accent mb-3">Screenshots</h2>
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
       <Demo
-        image="/images/issue/main-interface.png"
+        image="/images/sprint/main-interface.png"
         title="Main interface - issues list and detail pane"
         type="boxed"
       />
       <Demo
-        image="/images/issue/selection.png"
+        image="/images/sprint/selection.png"
         title="Organisation and project selection"
         type="boxed"
       />
       <Demo
-        image="/images/issue/issue-creation.png"
+        image="/images/sprint/issue-creation.png"
         title="Issue creation dialog"
         type="boxed"
       />
       <Demo
-        image="/images/issue/issue-detail-pane-assignee-selection.png"
+        image="/images/sprint/issue-detail-pane-assignee-selection.png"
         title="Issue detail pane with assignee selection"
         type="boxed"
       />
       <Demo
-        image="/images/issue/organisation-management.png"
+        image="/images/sprint/organisation-management.png"
         title="Organisation management"
         type="boxed"
       />
       <Demo
-        image="/images/issue/server-configuration.png"
+        image="/images/sprint/server-configuration.png"
         title="Server configuration (self-hosting)"
         type="boxed"
       />
