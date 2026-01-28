@@ -38,8 +38,8 @@ export const metadata = {
         <li>Customizable issue statuses per organisation</li>
         <li>Resizable split-pane interface</li>
         <li>Role-based access (owner, admin, member)</li>
+        <li>Avatar uploads with S3 storage</li>
         <li>Native desktop app via Tauri</li>
-        <li>Self-hostable</li>
       </ul>
     </div>
 
@@ -47,11 +47,11 @@ export const metadata = {
       <h2 class="text-lg text-ayu-green-500 mb-2">Technologies</h2>
       <ul class="list-disc list-inside space-y-1">
         <li>React + TypeScript (frontend)</li>
-        <li>Bun + Drizzle ORM (backend)</li>
+        <li>Bun.serve + Drizzle ORM (backend)</li>
         <li>PostgreSQL</li>
+        <li>Tailwind + shadcn/ui</li>
         <li>Tauri (desktop)</li>
-        <li>Tailwind CSS + shadcn/ui</li>
-        <li>JWT authentication</li>
+        <li>S3 file storage (avatars)</li>
       </ul>
     </div>
   </div>
@@ -60,45 +60,34 @@ export const metadata = {
     <h2 class="text-2xl text-ayu-accent mb-3">Architecture</h2>
     <p class="mb-4">
       Sprint uses a monorepo structure with three packages: a shared package
-      containing database schemas and types, a backend API server running on Bun
-      with Drizzle ORM, and a React frontend that can be served as a web app or
+      containing database schemas and types, a Bun.serve API with Drizzle ORM
+      and auth middleware, and a React frontend that runs as a web app or is
       bundled as a native desktop application with Tauri.
     </p>
   </div>
 
   <div class="mt-4">
     <h2 class="text-2xl text-ayu-accent mb-3">Screenshots</h2>
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-      <Demo
-        image="/images/sprint/main-interface.png"
-        title="Main interface - issues list and detail pane"
-        type="boxed"
-      />
-      <Demo
-        image="/images/sprint/selection.png"
-        title="Organisation and project selection"
-        type="boxed"
-      />
-      <Demo
-        image="/images/sprint/issue-creation.png"
-        title="Issue creation dialog"
-        type="boxed"
-      />
-      <Demo
-        image="/images/sprint/issue-detail-pane-assignee-selection.png"
-        title="Issue detail pane with assignee selection"
-        type="boxed"
-      />
-      <Demo
-        image="/images/sprint/organisation-management.png"
-        title="Organisation management"
-        type="boxed"
-      />
-      <Demo
-        image="/images/sprint/server-configuration.png"
-        title="Server configuration (self-hosting)"
-        type="boxed"
-      />
+    <div class="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-1 gap-4">
+      <Demo image="/images/sprint/landing-1.png" title="Landing — 1" type="boxed" />
+      <!-- <Demo image="/images/sprint/landing-2.png" title="Landing — 2" type="boxed" /> -->
+      <!-- <Demo image="/images/sprint/landing-3.png" title="Landing — 3" type="boxed" /> -->
+      <!-- <Demo image="/images/sprint/landing-4.png" title="Landing — 4" type="boxed" /> -->
+      <Demo image="/images/sprint/landing-light-1.png" title="Landing (light) — 1" type="boxed" />
+      <!-- <Demo image="/images/sprint/landing-light-2.png" title="Landing (light) — 2" type="boxed" /> -->
+      <!-- <Demo image="/images/sprint/landing-light-3.png" title="Landing (light) — 3" type="boxed" /> -->
+      <!-- <Demo image="/images/sprint/landing-light-4.png" title="Landing (light) — 4" type="boxed" /> -->
+
+      <Demo image="/images/sprint/selected-issue.png" title="Main interface — issues list and detail pane" type="boxed" />
+      <Demo image="/images/sprint/filter-status.png" title="Filter status" type="boxed" />
+      <Demo image="/images/sprint/create-issue.png" title="Create issue" type="boxed" />
+      <Demo image="/images/sprint/sprints.png" title="Sprints" type="boxed" />
+
+      <Demo image="/images/sprint/account-settings.png" title="Account settings" type="boxed" />
+      <Demo image="/images/sprint/organisations-edit.png" title="Organisation edit" type="boxed" />
+      <Demo image="/images/sprint/organisations-projects-settings.png" title="Organisation projects settings" type="boxed" />
+      <Demo image="/images/sprint/organisations-issues-settings.png" title="Organisation issues settings" type="boxed" />
+      <Demo image="/images/sprint/organisations-features-settings.png" title="Organisation features settings" type="boxed" />
     </div>
   </div>
 </ProjectPage>
